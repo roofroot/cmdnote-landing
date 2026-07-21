@@ -601,3 +601,79 @@ body {
         min-height: 400px;
     }
 }
+
+/* Privacy Policy Page */
+.privacy-policy {
+    padding: 3rem 0 4rem;
+    background: var(--bg-light);
+    min-height: calc(100vh - 200px);
+}
+
+.privacy-policy h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.privacy-effective-date,
+.privacy-software-name {
+    text-align: center;
+    color: var(--secondary-color);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.privacy-software-name {
+    margin-bottom: 2.5rem;
+}
+
+.privacy-section {
+    background: white;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.privacy-section h2 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.privacy-section h3 {
+    font-size: 1.15rem;
+    color: var(--text-color);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.privacy-section p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.privacy-section ul,
+.privacy-section ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.privacy-section li {
+    margin-bottom: 0.75rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.privacy-section ol li {
+    list-style-type: decimal;
+}
+
+.privacy-section ul li {
+    list-style-type: disc;
+}
