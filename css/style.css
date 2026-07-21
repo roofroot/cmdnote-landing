@@ -677,3 +677,16 @@ body {
 .privacy-section ul li {
     list-style-type: disc;
 }
+
+/* Highlight Email */
+.highlight-email {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.highlight-email:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}

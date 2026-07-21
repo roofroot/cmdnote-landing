@@ -29,7 +29,7 @@ const translations = {
         step_4_desc: "将下载的 JSON 文件导入到 CmdNote 中，开始使用您的命令模板。",
         import_tip: "打开 CmdNote，点击导入按钮，选择您的 JSON 文件即可加载所有命令模板。",
         step_5_title: "感谢您的使用",
-        step_5_desc: "后续软件将持续更新优化，为您带来更便捷的操作体验。感谢您的使用，如有任何建议或反馈，欢迎发送邮件至 coulanasaluen@outlook.com，我们期待您的宝贵意见。",
+        step_5_desc: "后续软件将持续更新优化，为您带来更便捷的操作体验。感谢您的使用，如有任何建议或反馈，欢迎发送邮件至 <a href=\"mailto:coulanasaluen@outlook.com\" class=\"highlight-email\">coulanasaluen@outlook.com</a>，我们期待您的宝贵意见。",
         placeholder_hint: "[截图占位符 - 后续添加]",
         json_preview: "JSON预览",
         btn_copy: "复制",
@@ -113,7 +113,7 @@ const translations = {
         step_4_desc: "Import the downloaded JSON file into CmdNote to start using your command templates.",
         import_tip: "Open CmdNote, click the import button, and select your JSON file to load all command templates.",
         step_5_title: "Thank You for Using",
-        step_5_desc: "We will continue to enhance the software with new features to provide a smoother experience. Thank you for choosing CmdNote! If you have any suggestions or feedback, please feel free to reach out to us at coulanasaluen@outlook.com.",
+        step_5_desc: "We will continue to enhance the software with new features to provide a smoother experience. Thank you for choosing CmdNote! If you have any suggestions or feedback, please feel free to reach out to us at <a href=\"mailto:coulanasaluen@outlook.com\" class=\"highlight-email\">coulanasaluen@outlook.com</a>.",
         placeholder_hint: "[Screenshot placeholder - will be added later]",
         json_preview: "JSON Preview",
         btn_copy: "Copy",
@@ -177,7 +177,7 @@ function setLanguage(lang) {
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[lang] && translations[lang][key]) {
-            el.textContent = translations[lang][key];
+            el.innerHTML = translations[lang][key];
         }
     });
     
