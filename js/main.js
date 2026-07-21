@@ -1,17 +1,34 @@
 const demoJsonData = {
     "command_tasks": [
         {
-            "id": 1,
+            "id": 0,
             "name": "dir",
             "parts": [
-                {"Fixed": "dir"},
-                {"Param": {"name": "Display Mode", "options": ["/w", "/a", "/s"]}}
+                {
+                    "Fixed": "dir"
+                },
+                {
+                    "Dir": {
+                        "key": "directory"
+                    }
+                },
+                {
+                    "Param": {
+                        "name": "mode",
+                        "options": [
+                            "/a",
+                            "/w",
+                            "/s"
+                        ]
+                    }
+                }
             ],
             "is_blocking": false,
             "group": "Directory",
-            "note": "List files and folders in the current directory"
+            "note": ""
         }
-    ]
+    ],
+    "cmd_next_id": 1
 };
 
 function copyDemoJson() {
