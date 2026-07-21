@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CmdNote - JSON Editor</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>CmdNote</h1>
+                <span class="tagline" data-i18n="tagline">Command Line Debugging Tool</span>
+            </div>
+            <nav class="nav">
+                <a href="index.html" data-i18n="nav_home">Home</a>
+                <select id="langSelect" class="lang-select">
+                    <option value="en">English</option>
+                    <option value="zh">中文</option>
+                </select>
+            </nav>
+        </div>
+    </header>
+
+    <main class="editor-page">
+        <div class="container editor-container">
+            <aside class="template-sidebar">
+                <h3 data-i18n="template_list">Template List</h3>
+                <div id="templateTree" class="template-tree">
+                </div>
+            </aside>
+
+            <section class="editor-main">
+                <div class="editor-header">
+                    <h3 data-i18n="json_editor">JSON Editor</h3>
+                    <div class="editor-actions">
+                        <button class="btn-copy" onclick="copyEditorContent()" data-i18n="btn_copy">Copy</button>
+                        <button class="btn-download" onclick="downloadEditorContent()" data-i18n="btn_download">Download</button>
+                    </div>
+                </div>
+                <textarea id="jsonEditor" class="json-editor" spellcheck="false"></textarea>
+                <div id="editorStatus" class="editor-status"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 CmdNote. <span data-i18n="footer_rights">All rights reserved.</span></p>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/editor.js"></script>
+</body>
+</html>

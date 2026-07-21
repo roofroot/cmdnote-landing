@@ -1,0 +1,355 @@
+{
+  "command_tasks": [
+    {
+      "id": 1,
+      "name": "dir",
+      "parts": [
+        {"Fixed": "dir"},
+        {"Param": {"name": "显示模式", "options": ["/w", "/a", "/s", "/a /s"]}}
+      ],
+      "is_blocking": false,
+      "group": "目录查看",
+      "note": "列出当前目录下的文件和文件夹\n/w 宽列表模式\n/a 显示隐藏文件\n/s 递归子目录"
+    },
+    {
+      "id": 2,
+      "name": "tree",
+      "parts": [
+        {"Fixed": "tree"},
+        {"Param": {"name": "选项", "options": ["/f", "/a", "/f /a"]}}
+      ],
+      "is_blocking": false,
+      "group": "目录查看",
+      "note": "以树形结构显示目录层级\n/f 同时显示文件名\n/a 使用ASCII字符"
+    },
+    {
+      "id": 3,
+      "name": "切换目录并查看",
+      "parts": [
+        {"Fixed": "cd /d "},
+        {"Dir": {"key": "目标目录"}},
+        {"Fixed": " && dir"}
+      ],
+      "is_blocking": false,
+      "group": "目录查看",
+      "note": "切换到指定目录并列出内容\ncd /d 支持跨盘符切换"
+    },
+    {
+      "id": 4,
+      "name": "搜索文件",
+      "parts": [
+        {"Fixed": "dir /s /b "},
+        {"KeyValue": {"key": "文件路径或通配符"}}
+      ],
+      "is_blocking": false,
+      "group": "目录查看",
+      "note": "递归搜索匹配名称的文件\n/s 递归搜索，/b 仅输出完整路径\n例如: dir /s /b *.txt"
+    },
+    {
+      "id": 5,
+      "name": "查看磁盘空间",
+      "parts": [
+        {"Fixed": "wmic logicaldisk get size,freespace,caption"}
+      ],
+      "is_blocking": false,
+      "group": "目录查看",
+      "note": "列出所有磁盘分区的总容量和剩余空间"
+    },
+    {
+      "id": 6,
+      "name": "copy",
+      "parts": [
+        {"Fixed": "copy "},
+        {"KeyValue": {"key": "源文件"}},
+        {"Fixed": " "},
+        {"KeyValue": {"key": "目标路径"}},
+        {"Param": {"name": "选项", "options": ["/y", "/-y"]}}
+      ],
+      "is_blocking": false,
+      "group": "文件操作",
+      "note": "复制文件到目标位置\n/y 自动覆盖不提示\n/-y 覆盖前确认"
+    },
+    {
+      "id": 7,
+      "name": "move",
+      "parts": [
+        {"Fixed": "move "},
+        {"KeyValue": {"key": "源文件"}},
+        {"Fixed": " "},
+        {"KeyValue": {"key": "目标路径"}}
+      ],
+      "is_blocking": false,
+      "group": "文件操作",
+      "note": "将文件移动到新位置"
+    },
+    {
+      "id": 8,
+      "name": "del",
+      "parts": [
+        {"Fixed": "del "},
+        {"Param": {"name": "选项", "options": ["/f", "/q", "/f /q"]}},
+        {"Fixed": " "},
+        {"KeyValue": {"key": "文件名"}}
+      ],
+      "is_blocking": false,
+      "group": "文件操作",
+      "note": "删除指定文件\n/f 强制删除只读文件\n/q 静默删除不确认"
+    },
+    {
+      "id": 9,
+      "name": "mkdir",
+      "parts": [
+        {"Fixed": "mkdir "},
+        {"KeyValue": {"key": "目录名"}}
+      ],
+      "is_blocking": false,
+      "group": "文件操作",
+      "note": "在当前路径创建新目录\n支持相对路径和绝对路径"
+    },
+    {
+      "id": 10,
+      "name": "ren 批量重命名",
+      "parts": [
+        {"Fixed": "ren *."},
+        {"KeyValue": {"key": "原扩展名"}},
+        {"Fixed": " *."},
+        {"KeyValue": {"key": "新扩展名"}}
+      ],
+      "is_blocking": false,
+      "group": "文件操作",
+      "note": "批量修改当前目录下文件的扩展名\n例如将 .txt 改为 .log"
+    },
+    {
+      "id": 11,
+      "name": "fc 文件比较",
+      "parts": [
+        {"Fixed": "fc "},
+        {"KeyValue": {"key": "文件1"}},
+        {"Fixed": " "},
+        {"KeyValue": {"key": "文件2"}},
+        {"Param": {"name": "比较模式", "options": ["/b", "/i"]}}
+      ],
+      "is_blocking": false,
+      "group": "文件操作",
+      "note": "比较两个文件内容差异\n/b 二进制比较\n/i 忽略大小写"
+    },
+    {
+      "id": 12,
+      "name": "tar 压缩",
+      "parts": [
+        {"Fixed": "tar -czf "},
+        {"KeyValue": {"key": "输出文件名.tar.gz"}},
+        {"Fixed": " "},
+        {"Dir": {"key": "源目录"}}
+      ],
+      "is_blocking": false,
+      "group": "文件操作",
+      "note": "将目录压缩为 tar.gz 格式\nWindows 10+ 自带 tar 命令"
+    },
+    {
+      "id": 13,
+      "name": "type 查看文件内容",
+      "parts": [
+        {"Fixed": "type "},
+        {"KeyValue": {"key": "文件名"}}
+      ],
+      "is_blocking": false,
+      "group": "文件操作",
+      "note": "在终端显示文件的全部内容\n等同于Linux的cat命令"
+    },
+    {
+      "id": 14,
+      "name": "findstr 查找文件内容",
+      "parts": [
+        {"Fixed": "findstr /s /i \""},
+        {"KeyValue": {"key": "搜索文本"}},
+        {"Fixed": "\" "},
+        {"KeyValue": {"key": "文件匹配 如*.txt"}}
+      ],
+      "is_blocking": false,
+      "group": "文件操作",
+      "note": "在文件中搜索指定文本内容\n/s 搜索子目录\n/i 忽略大小写"
+    },
+    {
+      "id": 15,
+      "name": "systeminfo",
+      "parts": [
+        {"Fixed": "systeminfo"}
+      ],
+      "is_blocking": false,
+      "group": "系统信息",
+      "note": "显示完整的系统配置信息\n包括操作系统版本、硬件信息、网络等"
+    },
+    {
+      "id": 16,
+      "name": "tasklist",
+      "parts": [
+        {"Fixed": "tasklist"}
+      ],
+      "is_blocking": false,
+      "group": "系统信息",
+      "note": "列出当前所有运行中的进程\n可配合 /fi 按名称过滤"
+    },
+    {
+      "id": 17,
+      "name": "taskkill",
+      "parts": [
+        {"Fixed": "taskkill "},
+        {"Param": {"name": "终止方式", "options": ["/im ", "/pid "]}},
+        {"KeyValue": {"key": "进程名或PID"}},
+        {"Param": {"name": "强制", "options": ["/f"]}}
+      ],
+      "is_blocking": false,
+      "group": "系统信息",
+      "note": "终止指定进程\n/im 按进程名\n/pid 按进程ID\n/f 强制终止"
+    },
+    {
+      "id": 18,
+      "name": "查看端口占用",
+      "parts": [
+        {"Fixed": "netstat -ano | findstr :"},
+        {"KeyValue": {"key": "端口号"}}
+      ],
+      "is_blocking": false,
+      "group": "系统信息",
+      "note": "查看指定端口的占用情况及对应进程PID\n常用端口：80(http) 443(https) 3306(mysql)"
+    },
+    {
+      "id": 19,
+      "name": "set 环境变量",
+      "parts": [
+        {"Fixed": "set"},
+        {"Param": {"name": "变量名", "options": ["PATH", "JAVA_HOME", "PYTHON_HOME"]}}
+      ],
+      "is_blocking": false,
+      "group": "系统信息",
+      "note": "查看所有环境变量或指定变量的值\n不带参数列出所有变量"
+    },
+    {
+      "id": 20,
+      "name": "shutdown",
+      "parts": [
+        {"Param": {"name": "操作", "options": ["shutdown /s", "shutdown /r", "shutdown /a"]}},
+        {"Param": {"name": "延迟", "options": ["/t 0", "/t 60", "/t 300"]}}
+      ],
+      "is_blocking": false,
+      "group": "系统信息",
+      "note": "控制计算机电源\n/s 关机\n/r 重启\n/a 取消\n/t 延迟秒数（0=立即）"
+    },
+    {
+      "id": 21,
+      "name": "ping",
+      "parts": [
+        {"Fixed": "ping "},
+        {"KeyValue": {"key": "目标地址"}},
+        {"Param": {"name": "次数", "options": ["-n 4", "-n 10", "-t"]}}
+      ],
+      "is_blocking": false,
+      "group": "网络工具",
+      "note": "测试网络连通性\n-n 指定次数\n-t 持续ping直到手动停止"
+    },
+    {
+      "id": 22,
+      "name": "nslookup",
+      "parts": [
+        {"Fixed": "nslookup "},
+        {"KeyValue": {"key": "域名"}}
+      ],
+      "is_blocking": false,
+      "group": "网络工具",
+      "note": "查询域名对应的IP地址和DNS信息"
+    },
+    {
+      "id": 23,
+      "name": "tracert",
+      "parts": [
+        {"Fixed": "tracert "},
+        {"KeyValue": {"key": "目标地址"}}
+      ],
+      "is_blocking": false,
+      "group": "网络工具",
+      "note": "追踪数据包到达目标地址的路由路径\n用于排查网络延迟和断点"
+    },
+    {
+      "id": 24,
+      "name": "ipconfig",
+      "parts": [
+        {"Fixed": "ipconfig"},
+        {"Param": {"name": "选项", "options": ["/all", "/release", "/renew"]}}
+      ],
+      "is_blocking": false,
+      "group": "网络工具",
+      "note": "查看或管理网络适配器配置\n/all 显示完整信息\n/release 释放IP\n/renew 重新获取"
+    },
+    {
+      "id": 25,
+      "name": "刷新DNS缓存",
+      "parts": [
+        {"Fixed": "ipconfig /flushdns"}
+      ],
+      "is_blocking": false,
+      "group": "网络工具",
+      "note": "清除本地DNS缓存\n解决DNS解析异常或域名变更后未生效的问题"
+    },
+    {
+      "id": 26,
+      "name": "python http.server",
+      "parts": [
+        {"Fixed": "python -m http.server "},
+        {"KeyValue": {"key": "端口"}},
+        {"Param": {"name": "目录", "options": ["--directory ."]}}
+      ],
+      "is_blocking": true,
+      "group": "开发工具",
+      "note": "在当前目录启动简易HTTP服务器\n常用端口：8080、8888、9000\n阻塞模式，后台运行"
+    },
+    {
+      "id": 27,
+      "name": "git status",
+      "parts": [
+        {"Fixed": "git status"},
+        {"Param": {"name": "选项", "options": ["-s", "--short"]}}
+      ],
+      "is_blocking": false,
+      "group": "开发工具",
+      "note": "查看Git仓库当前状态\n-s 简洁输出，显示修改/新增/删除的文件"
+    },
+    {
+      "id": 28,
+      "name": "git log",
+      "parts": [
+        {"Fixed": "git log"},
+        {"Param": {"name": "显示方式", "options": ["--oneline", "--oneline -10", "--graph --oneline"]}}
+      ],
+      "is_blocking": false,
+      "group": "开发工具",
+      "note": "查看Git提交历史\n--oneline 单行显示\n-10 最近10条\n--graph 图形化分支"
+    },
+    {
+      "id": 29,
+      "name": "npm install",
+      "parts": [
+        {"Fixed": "npm install"},
+        {"Param": {"name": "模式", "options": ["--save-dev", "--production"]}}
+      ],
+      "is_blocking": false,
+      "group": "开发工具",
+      "note": "根据 package.json 安装项目依赖\n--save-dev 安装开发依赖\n--production 仅安装生产依赖"
+    },
+    {
+      "id": 30,
+      "name": "python venv",
+      "parts": [
+        {"Fixed": "python -m venv "},
+        {"KeyValue": {"key": "环境名称"}},
+        {"Fixed": " && "},
+        {"KeyValue": {"key": "环境名称"}},
+        {"Fixed": "\\Scripts\\activate"}
+      ],
+      "is_blocking": false,
+      "group": "开发工具",
+      "note": "创建并激活Python虚拟环境\n常用名称：venv、env、.venv"
+    }
+  ],
+  "cmd_next_id": 31
+}

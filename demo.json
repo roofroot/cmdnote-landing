@@ -1,0 +1,32 @@
+{
+  "command_tasks": [
+    {
+      "id": 0,
+      "name": "dir",
+      "parts": [
+        {
+          "Fixed": "dir"
+        },
+        {
+          "Dir": {
+            "key": "directory"
+          }
+        },
+        {
+          "Param": {
+            "name": "mode",
+            "options": [
+              "/a",
+              "/w",
+              "/s"
+            ]
+          }
+        }
+      ],
+      "is_blocking": false,
+      "group": "Directory",
+      "note": ""
+    }
+  ],
+  "cmd_next_id": 1
+}

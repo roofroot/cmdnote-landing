@@ -1,0 +1,355 @@
+{
+  "command_tasks": [
+    {
+      "id": 1,
+      "name": "dir",
+      "parts": [
+        {"Fixed": "dir"},
+        {"Param": {"name": "Display Mode", "options": ["/w", "/a", "/s", "/a /s"]}}
+      ],
+      "is_blocking": false,
+      "group": "Directory",
+      "note": "List files and folders in the current directory\n/w Wide list format\n/a Show hidden files\n/s Recursive subdirectories"
+    },
+    {
+      "id": 2,
+      "name": "tree",
+      "parts": [
+        {"Fixed": "tree"},
+        {"Param": {"name": "Options", "options": ["/f", "/a", "/f /a"]}}
+      ],
+      "is_blocking": false,
+      "group": "Directory",
+      "note": "Display directory structure in tree format\n/f Include file names\n/a Use ASCII characters"
+    },
+    {
+      "id": 3,
+      "name": "cd and list",
+      "parts": [
+        {"Fixed": "cd /d "},
+        {"Dir": {"key": "Target Directory"}},
+        {"Fixed": " && dir"}
+      ],
+      "is_blocking": false,
+      "group": "Directory",
+      "note": "Switch to the specified directory and list its contents\ncd /d supports switching across drives"
+    },
+    {
+      "id": 4,
+      "name": "Search Files",
+      "parts": [
+        {"Fixed": "dir /s /b "},
+        {"KeyValue": {"key": "Path or Wildcard"}}
+      ],
+      "is_blocking": false,
+      "group": "Directory",
+      "note": "Recursively search for files matching the pattern\n/s Search subdirectories, /b Bare format (full path only)\nExample: dir /s /b *.txt"
+    },
+    {
+      "id": 5,
+      "name": "Disk Space",
+      "parts": [
+        {"Fixed": "wmic logicaldisk get size,freespace,caption"}
+      ],
+      "is_blocking": false,
+      "group": "Directory",
+      "note": "List total and free space for all disk partitions"
+    },
+    {
+      "id": 6,
+      "name": "copy",
+      "parts": [
+        {"Fixed": "copy "},
+        {"KeyValue": {"key": "Source File"}},
+        {"Fixed": " "},
+        {"KeyValue": {"key": "Destination"}},
+        {"Param": {"name": "Options", "options": ["/y", "/-y"]}}
+      ],
+      "is_blocking": false,
+      "group": "File Operations",
+      "note": "Copy file to destination\n/y Suppress overwrite prompt\n/-y Prompt before overwrite"
+    },
+    {
+      "id": 7,
+      "name": "move",
+      "parts": [
+        {"Fixed": "move "},
+        {"KeyValue": {"key": "Source File"}},
+        {"Fixed": " "},
+        {"KeyValue": {"key": "Destination"}}
+      ],
+      "is_blocking": false,
+      "group": "File Operations",
+      "note": "Move file to a new location"
+    },
+    {
+      "id": 8,
+      "name": "del",
+      "parts": [
+        {"Fixed": "del "},
+        {"Param": {"name": "Options", "options": ["/f", "/q", "/f /q"]}},
+        {"Fixed": " "},
+        {"KeyValue": {"key": "Filename"}}
+      ],
+      "is_blocking": false,
+      "group": "File Operations",
+      "note": "Delete specified file\n/f Force delete read-only files\n/q Quiet mode (no confirmation)"
+    },
+    {
+      "id": 9,
+      "name": "mkdir",
+      "parts": [
+        {"Fixed": "mkdir "},
+        {"KeyValue": {"key": "Directory Name"}}
+      ],
+      "is_blocking": false,
+      "group": "File Operations",
+      "note": "Create a new directory at the current path\nSupports relative and absolute paths"
+    },
+    {
+      "id": 10,
+      "name": "ren Batch Rename",
+      "parts": [
+        {"Fixed": "ren *."},
+        {"KeyValue": {"key": "Old Extension"}},
+        {"Fixed": " *."},
+        {"KeyValue": {"key": "New Extension"}}
+      ],
+      "is_blocking": false,
+      "group": "File Operations",
+      "note": "Batch rename file extensions in current directory\nExample: change .txt to .log"
+    },
+    {
+      "id": 11,
+      "name": "fc File Compare",
+      "parts": [
+        {"Fixed": "fc "},
+        {"KeyValue": {"key": "File 1"}},
+        {"Fixed": " "},
+        {"KeyValue": {"key": "File 2"}},
+        {"Param": {"name": "Mode", "options": ["/b", "/i"]}}
+      ],
+      "is_blocking": false,
+      "group": "File Operations",
+      "note": "Compare two files and display differences\n/b Binary compare\n/i Ignore case"
+    },
+    {
+      "id": 12,
+      "name": "tar Compress",
+      "parts": [
+        {"Fixed": "tar -czf "},
+        {"KeyValue": {"key": "Output Name.tar.gz"}},
+        {"Fixed": " "},
+        {"Dir": {"key": "Source Directory"}}
+      ],
+      "is_blocking": false,
+      "group": "File Operations",
+      "note": "Compress directory into tar.gz archive\nBuilt-in tar command on Windows 10+"
+    },
+    {
+      "id": 13,
+      "name": "type View File",
+      "parts": [
+        {"Fixed": "type "},
+        {"KeyValue": {"key": "Filename"}}
+      ],
+      "is_blocking": false,
+      "group": "File Operations",
+      "note": "Display full content of a file in terminal\nEquivalent to cat on Linux"
+    },
+    {
+      "id": 14,
+      "name": "findstr Search Content",
+      "parts": [
+        {"Fixed": "findstr /s /i \""},
+        {"KeyValue": {"key": "Search Text"}},
+        {"Fixed": "\" "},
+        {"KeyValue": {"key": "File Pattern e.g. *.txt"}}
+      ],
+      "is_blocking": false,
+      "group": "File Operations",
+      "note": "Search for specific text within files\n/s Search subdirectories\n/i Case-insensitive"
+    },
+    {
+      "id": 15,
+      "name": "systeminfo",
+      "parts": [
+        {"Fixed": "systeminfo"}
+      ],
+      "is_blocking": false,
+      "group": "System Info",
+      "note": "Display detailed system configuration\nIncludes OS version, hardware info, network, etc."
+    },
+    {
+      "id": 16,
+      "name": "tasklist",
+      "parts": [
+        {"Fixed": "tasklist"}
+      ],
+      "is_blocking": false,
+      "group": "System Info",
+      "note": "List all currently running processes\nUse /fi to filter by name"
+    },
+    {
+      "id": 17,
+      "name": "taskkill",
+      "parts": [
+        {"Fixed": "taskkill "},
+        {"Param": {"name": "Method", "options": ["/im ", "/pid "]}},
+        {"KeyValue": {"key": "Process Name or PID"}},
+        {"Param": {"name": "Force", "options": ["/f"]}}
+      ],
+      "is_blocking": false,
+      "group": "System Info",
+      "note": "Terminate specified process\n/im By process name\n/pid By process ID\n/f Force termination"
+    },
+    {
+      "id": 18,
+      "name": "Check Port Usage",
+      "parts": [
+        {"Fixed": "netstat -ano | findstr :"},
+        {"KeyValue": {"key": "Port Number"}}
+      ],
+      "is_blocking": false,
+      "group": "System Info",
+      "note": "Check port usage and corresponding process PID\nCommon ports: 80(http) 443(https) 3306(mysql)"
+    },
+    {
+      "id": 19,
+      "name": "set Env Vars",
+      "parts": [
+        {"Fixed": "set"},
+        {"Param": {"name": "Variable Name", "options": ["PATH", "JAVA_HOME", "PYTHON_HOME"]}}
+      ],
+      "is_blocking": false,
+      "group": "System Info",
+      "note": "View all environment variables or a specific one\nNo arguments lists all variables"
+    },
+    {
+      "id": 20,
+      "name": "shutdown",
+      "parts": [
+        {"Param": {"name": "Action", "options": ["shutdown /s", "shutdown /r", "shutdown /a"]}},
+        {"Param": {"name": "Delay", "options": ["/t 0", "/t 60", "/t 300"]}}
+      ],
+      "is_blocking": false,
+      "group": "System Info",
+      "note": "Control computer power state\n/s Shutdown\n/r Restart\n/a Abort\n/t Delay in seconds (0=immediate)"
+    },
+    {
+      "id": 21,
+      "name": "ping",
+      "parts": [
+        {"Fixed": "ping "},
+        {"KeyValue": {"key": "Target Address"}},
+        {"Param": {"name": "Count", "options": ["-n 4", "-n 10", "-t"]}}
+      ],
+      "is_blocking": false,
+      "group": "Network",
+      "note": "Test network connectivity\n-n Specify count\n-t Ping continuously until stopped"
+    },
+    {
+      "id": 22,
+      "name": "nslookup",
+      "parts": [
+        {"Fixed": "nslookup "},
+        {"KeyValue": {"key": "Domain Name"}}
+      ],
+      "is_blocking": false,
+      "group": "Network",
+      "note": "Query IP address and DNS info for a domain"
+    },
+    {
+      "id": 23,
+      "name": "tracert",
+      "parts": [
+        {"Fixed": "tracert "},
+        {"KeyValue": {"key": "Target Address"}}
+      ],
+      "is_blocking": false,
+      "group": "Network",
+      "note": "Trace the route packets take to reach a target\nUseful for diagnosing latency and connection issues"
+    },
+    {
+      "id": 24,
+      "name": "ipconfig",
+      "parts": [
+        {"Fixed": "ipconfig"},
+        {"Param": {"name": "Options", "options": ["/all", "/release", "/renew"]}}
+      ],
+      "is_blocking": false,
+      "group": "Network",
+      "note": "View or manage network adapter settings\n/all Show full details\n/release Release IP\n/renew Renew IP"
+    },
+    {
+      "id": 25,
+      "name": "Flush DNS Cache",
+      "parts": [
+        {"Fixed": "ipconfig /flushdns"}
+      ],
+      "is_blocking": false,
+      "group": "Network",
+      "note": "Clear local DNS cache\nFixes DNS resolution issues or stale domain entries"
+    },
+    {
+      "id": 26,
+      "name": "python http.server",
+      "parts": [
+        {"Fixed": "python -m http.server "},
+        {"KeyValue": {"key": "Port"}},
+        {"Param": {"name": "Directory", "options": ["--directory ."]}}
+      ],
+      "is_blocking": true,
+      "group": "Dev Tools",
+      "note": "Start a simple HTTP server in the current directory\nCommon ports: 8080, 8888, 9000\nBlocking mode, runs in background"
+    },
+    {
+      "id": 27,
+      "name": "git status",
+      "parts": [
+        {"Fixed": "git status"},
+        {"Param": {"name": "Options", "options": ["-s", "--short"]}}
+      ],
+      "is_blocking": false,
+      "group": "Dev Tools",
+      "note": "Show current status of the Git repository\n-s Short output showing modified/new/deleted files"
+    },
+    {
+      "id": 28,
+      "name": "git log",
+      "parts": [
+        {"Fixed": "git log"},
+        {"Param": {"name": "Format", "options": ["--oneline", "--oneline -10", "--graph --oneline"]}}
+      ],
+      "is_blocking": false,
+      "group": "Dev Tools",
+      "note": "View Git commit history\n--oneline One line per commit\n-10 Last 10 commits\n--graph Visual branch graph"
+    },
+    {
+      "id": 29,
+      "name": "npm install",
+      "parts": [
+        {"Fixed": "npm install"},
+        {"Param": {"name": "Mode", "options": ["--save-dev", "--production"]}}
+      ],
+      "is_blocking": false,
+      "group": "Dev Tools",
+      "note": "Install project dependencies from package.json\n--save-dev Install dev dependencies\n--production Install production deps only"
+    },
+    {
+      "id": 30,
+      "name": "python venv",
+      "parts": [
+        {"Fixed": "python -m venv "},
+        {"KeyValue": {"key": "Environment Name"}},
+        {"Fixed": " && "},
+        {"KeyValue": {"key": "Environment Name"}},
+        {"Fixed": "\\Scripts\\activate"}
+      ],
+      "is_blocking": false,
+      "group": "Dev Tools",
+      "note": "Create and activate a Python virtual environment\nCommon names: venv, env, .venv"
+    }
+  ],
+  "cmd_next_id": 31
+}
