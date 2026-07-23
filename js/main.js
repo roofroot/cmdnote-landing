@@ -110,32 +110,50 @@ window.onLanguageChange = function(lang) {
     loadTemplatePreview();
 };
 
-let currentSlide = 0;
-const totalSlides = 2;
+const carouselStates = {};
 
-function moveCarousel(direction) {
-    currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-    updateCarousel();
+function initCarousels() {
+    document.querySelectorAll('.carousel').forEach(carousel => {
+        const id = carousel.id;
+        const totalSlides = carousel.querySelectorAll('.carousel-item').length;
+        carouselStates[id] = { currentSlide: 0, totalSlides };
+    });
 }
 
-function goToSlide(index) {
-    currentSlide = index;
-    updateCarousel();
+function moveCarousel(direction, carouselId = 'step1Carousel') {
+    const state = carouselStates[carouselId];
+    if (!state) return;
+    
+    state.currentSlide = (state.currentSlide + direction + state.totalSlides) % state.totalSlides;
+    updateCarousel(carouselId);
 }
 
-function updateCarousel() {
-    const items = document.querySelectorAll('.carousel-item');
-    const indicators = document.querySelectorAll('.indicator');
+function goToSlide(index, carouselId = 'step1Carousel') {
+    const state = carouselStates[carouselId];
+    if (!state) return;
+    
+    state.currentSlide = index;
+    updateCarousel(carouselId);
+}
+
+function updateCarousel(carouselId = 'step1Carousel') {
+    const carousel = document.getElementById(carouselId);
+    if (!carousel) return;
+    
+    const items = carousel.querySelectorAll('.carousel-item');
+    const indicators = carousel.querySelectorAll('.indicator');
+    const state = carouselStates[carouselId];
     
     items.forEach((item, index) => {
-        item.classList.toggle('active', index === currentSlide);
+        item.classList.toggle('active', index === state.currentSlide);
     });
     
     indicators.forEach((indicator, index) => {
-        indicator.classList.toggle('active', index === currentSlide);
+        indicator.classList.toggle('active', index === state.currentSlide);
     });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     loadTemplatePreview();
+    initCarousels();
 });
