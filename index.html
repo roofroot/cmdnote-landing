@@ -155,24 +155,42 @@
                 </div>
 
                 <div class="usage-step">
-                    <h3 data-i18n="step_4_title">Step 4: Edit Templates</h3>
-                    <p data-i18n="step_4_desc">Click the button below to jump to the template library. You can modify the JSON content and download the updated version.</p>
+                    <h3 data-i18n="step_4_title">Step 4: Execute Commands</h3>
+                    <p data-i18n="step_4_desc">Choose to execute commands in CMD or PowerShell. You can check "Keep Session" to maintain an interactive session after execution, or leave it unchecked to exit automatically. Click "Stop All" to terminate running commands and end the session.</p>
+                    <div class="carousel" id="step4Carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="exec.png" alt="Command Execution Page">
+                            </div>
+                        </div>
+                        <button class="carousel-control prev" onclick="moveCarousel(-1, 'step4Carousel')">&#10094;</button>
+                        <button class="carousel-control next" onclick="moveCarousel(1, 'step4Carousel')">&#10095;</button>
+                        <div class="carousel-indicators">
+                            <span class="indicator active" onclick="goToSlide(0, 'step4Carousel')"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="usage-step">
+                    <h3 data-i18n="step_5_title">Step 5: Edit Templates</h3>
+                    <p data-i18n="step_5_desc">Click the button below to jump to the template library. You can modify the JSON content and download the updated version.</p>
+                    <p class="usage-tip" data-i18n="step_5_tip"></p>
                     <div class="edit-link-container">
                         <a href="editor.html" class="edit-link" data-i18n="edit_link_text">Go to Template Library →</a>
                     </div>
                 </div>
 
                 <div class="usage-step">
-                    <h3 data-i18n="step_5_title">Step 5: Import File to CmdNote</h3>
-                    <p data-i18n="step_5_desc">Import the downloaded JSON file into CmdNote to start using your command templates.</p>
+                    <h3 data-i18n="step_6_title">Step 6: Import File to CmdNote</h3>
+                    <p data-i18n="step_6_desc">Import the downloaded JSON file into CmdNote to start using your command templates.</p>
                     <div class="import-tip">
                         <p data-i18n="import_tip">Open CmdNote, click the import button, and select your JSON file to load all command templates.</p>
                     </div>
                 </div>
 
                 <div class="usage-step">
-                    <h3 data-i18n="step_6_title">Step 6: Thank You for Using</h3>
-                    <p data-i18n="step_6_desc">The software will continue to be updated with new features to make operations more convenient. Thank you for using, and feel free to send your valuable feedback to coulanasaluen@outlook.com.</p>
+                    <h3 data-i18n="step_7_title">Step 7: Thank You for Using</h3>
+                    <p data-i18n="step_7_desc">The software will continue to be updated with new features to make operations more convenient. Thank you for using, and feel free to send your valuable feedback to coulanasaluen@outlook.com.</p>
                 </div>
             </div>
         </section>

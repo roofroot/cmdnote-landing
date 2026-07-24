@@ -194,6 +194,14 @@ body {
     font-size: 1.05rem;
 }
 
+.usage-tip {
+    font-size: 0.85rem;
+    color: var(--secondary-color);
+    margin-top: -0.75rem;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
 .import-tip {
     background: var(--bg-light);
     border-left: 4px solid var(--primary-color);
