@@ -153,43 +153,8 @@ function updateCarousel(carouselId = 'step1Carousel') {
     });
 }
 
-function parseUpdateNote(text) {
-    const lines = text.split('\n').filter(l => l.trim() !== '');
-    if (lines.length === 0) return null;
-
-    const versionLine = lines[0].trim();
-    const version = versionLine.replace(/^version\s*/i, '').trim();
-
-    let section1Title = '';
-    let section1Items = [];
-    let section2Title = '';
-    let section2Items = [];
-
-    let currentSection = 0;
-    for (let i = 1; i < lines.length; i++) {
-        const line = lines[i].trim();
-        const itemMatch = line.match(/^(\d+)\.\s+(.+)$/);
-        if (itemMatch) {
-            if (currentSection === 1) {
-                section1Items.push(itemMatch[2]);
-            } else if (currentSection === 2) {
-                section2Items.push(itemMatch[2]);
-            }
-        } else {
-            if (currentSection === 0) {
-                section1Title = line;
-                currentSection = 1;
-            } else if (currentSection === 1) {
-                section2Title = line;
-                currentSection = 2;
-            }
-        }
-    }
-
-    return { version, section1Title, section1Items, section2Title, section2Items };
-}
-
-function renderUpdateNotes(data) {
+function renderUpdateNotes(lang) {
+    const data = updateNotesData[lang];
     if (!data) return;
 
     const badge = document.getElementById('updateBadge');
@@ -200,37 +165,24 @@ function renderUpdateNotes(data) {
 
     badge.textContent = 'v' + data.version;
 
-    newFeaturesTitle.textContent = data.section1Title;
-    newFeaturesList.innerHTML = data.section1Items.map(item =>
+    newFeaturesTitle.textContent = data.newFeaturesTitle;
+    newFeaturesList.innerHTML = data.newFeatures.map(item =>
         `<li><span class="update-item-bullet"></span><span>${item}</span></li>`
     ).join('');
 
-    bugFixesTitle.textContent = data.section2Title;
-    bugFixesList.innerHTML = data.section2Items.map(item =>
+    bugFixesTitle.textContent = data.bugFixesTitle;
+    bugFixesList.innerHTML = data.bugFixes.map(item =>
         `<li><span class="update-item-bullet"></span><span>${item}</span></li>`
     ).join('');
-}
-
-async function loadUpdateNotes(lang) {
-    const fileName = lang === 'zh' ? 'update_note_cn' : 'update_note_en';
-    try {
-        const response = await fetch(fileName + '?t=' + Date.now());
-        if (!response.ok) throw new Error('Failed to load update notes');
-        const text = await response.text();
-        const data = parseUpdateNote(text);
-        renderUpdateNotes(data);
-    } catch (error) {
-        console.error('Error loading update notes:', error);
-    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    loadUpdateNotes(currentLang);
+    renderUpdateNotes(currentLang);
     loadTemplatePreview();
     initCarousels();
 });
 
 window.onLanguageChange = function (lang) {
-    loadUpdateNotes(lang);
+    renderUpdateNotes(lang);
     loadTemplatePreview();
 };

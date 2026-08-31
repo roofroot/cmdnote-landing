@@ -155,6 +155,20 @@ body {
     color: #fff;
 }
 
+.update-store-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: #93c5fd;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.update-store-link:hover {
+    color: #bfdbfe;
+    text-decoration: underline;
+}
+
 .update-columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -612,7 +626,7 @@ body {
     transition: transform 0.2s;
 }
 
-.tree-group.expanded > .tree-group-header::before {
+.tree-group.expanded>.tree-group-header::before {
     transform: rotate(90deg);
 }
 
@@ -621,7 +635,7 @@ body {
     padding-left: 1rem;
 }
 
-.tree-group.expanded > .tree-items {
+.tree-group.expanded>.tree-items {
     display: block;
 }
 
