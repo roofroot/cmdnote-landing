@@ -68,7 +68,7 @@ function showNotification(message) {
         animation: slideIn 0.3s ease;
     `;
     document.body.appendChild(notification);
-    
+
     setTimeout(() => {
         notification.style.animation = 'slideOut 0.3s ease';
         setTimeout(() => document.body.removeChild(notification), 300);
@@ -78,7 +78,7 @@ function showNotification(message) {
 function loadTemplatePreview() {
     try {
         const data = templateData[currentLang];
-        
+
         const groups = {};
         data.command_tasks.forEach(task => {
             if (!groups[task.group]) {
@@ -86,10 +86,10 @@ function loadTemplatePreview() {
             }
             groups[task.group].push(task.name);
         });
-        
+
         const previewContainer = document.getElementById('templatePreview');
         previewContainer.innerHTML = '';
-        
+
         Object.entries(groups).slice(0, 4).forEach(([group, tasks]) => {
             const card = document.createElement('div');
             card.className = 'template-group-card';
@@ -106,7 +106,7 @@ function loadTemplatePreview() {
     }
 }
 
-window.onLanguageChange = function(lang) {
+window.onLanguageChange = function (lang) {
     loadTemplatePreview();
 };
 
@@ -123,7 +123,7 @@ function initCarousels() {
 function moveCarousel(direction, carouselId = 'step1Carousel') {
     const state = carouselStates[carouselId];
     if (!state) return;
-    
+
     state.currentSlide = (state.currentSlide + direction + state.totalSlides) % state.totalSlides;
     updateCarousel(carouselId);
 }
@@ -131,7 +131,7 @@ function moveCarousel(direction, carouselId = 'step1Carousel') {
 function goToSlide(index, carouselId = 'step1Carousel') {
     const state = carouselStates[carouselId];
     if (!state) return;
-    
+
     state.currentSlide = index;
     updateCarousel(carouselId);
 }
@@ -139,21 +139,98 @@ function goToSlide(index, carouselId = 'step1Carousel') {
 function updateCarousel(carouselId = 'step1Carousel') {
     const carousel = document.getElementById(carouselId);
     if (!carousel) return;
-    
+
     const items = carousel.querySelectorAll('.carousel-item');
     const indicators = carousel.querySelectorAll('.indicator');
     const state = carouselStates[carouselId];
-    
+
     items.forEach((item, index) => {
         item.classList.toggle('active', index === state.currentSlide);
     });
-    
+
     indicators.forEach((indicator, index) => {
         indicator.classList.toggle('active', index === state.currentSlide);
     });
 }
 
+function parseUpdateNote(text) {
+    const lines = text.split('\n').filter(l => l.trim() !== '');
+    if (lines.length === 0) return null;
+
+    const versionLine = lines[0].trim();
+    const version = versionLine.replace(/^version\s*/i, '').trim();
+
+    let section1Title = '';
+    let section1Items = [];
+    let section2Title = '';
+    let section2Items = [];
+
+    let currentSection = 0;
+    for (let i = 1; i < lines.length; i++) {
+        const line = lines[i].trim();
+        const itemMatch = line.match(/^(\d+)\.\s+(.+)$/);
+        if (itemMatch) {
+            if (currentSection === 1) {
+                section1Items.push(itemMatch[2]);
+            } else if (currentSection === 2) {
+                section2Items.push(itemMatch[2]);
+            }
+        } else {
+            if (currentSection === 0) {
+                section1Title = line;
+                currentSection = 1;
+            } else if (currentSection === 1) {
+                section2Title = line;
+                currentSection = 2;
+            }
+        }
+    }
+
+    return { version, section1Title, section1Items, section2Title, section2Items };
+}
+
+function renderUpdateNotes(data) {
+    if (!data) return;
+
+    const badge = document.getElementById('updateBadge');
+    const newFeaturesTitle = document.getElementById('newFeaturesTitle');
+    const newFeaturesList = document.getElementById('newFeaturesList');
+    const bugFixesTitle = document.getElementById('bugFixesTitle');
+    const bugFixesList = document.getElementById('bugFixesList');
+
+    badge.textContent = 'v' + data.version;
+
+    newFeaturesTitle.textContent = data.section1Title;
+    newFeaturesList.innerHTML = data.section1Items.map(item =>
+        `<li><span class="update-item-bullet"></span><span>${item}</span></li>`
+    ).join('');
+
+    bugFixesTitle.textContent = data.section2Title;
+    bugFixesList.innerHTML = data.section2Items.map(item =>
+        `<li><span class="update-item-bullet"></span><span>${item}</span></li>`
+    ).join('');
+}
+
+async function loadUpdateNotes(lang) {
+    const fileName = lang === 'zh' ? 'update_note_cn' : 'update_note_en';
+    try {
+        const response = await fetch(fileName + '?t=' + Date.now());
+        if (!response.ok) throw new Error('Failed to load update notes');
+        const text = await response.text();
+        const data = parseUpdateNote(text);
+        renderUpdateNotes(data);
+    } catch (error) {
+        console.error('Error loading update notes:', error);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    loadUpdateNotes(currentLang);
     loadTemplatePreview();
     initCarousels();
 });
+
+window.onLanguageChange = function (lang) {
+    loadUpdateNotes(lang);
+    loadTemplatePreview();
+};

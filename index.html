@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CmdNote - Command Line Debugging Tool</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <header class="header">
         <div class="container">
@@ -30,7 +32,24 @@
         <section class="hero">
             <div class="container">
                 <h2 data-i18n="hero_title">Professional Command Line Debugging Tool</h2>
-                <p class="hero-desc" data-i18n="hero_desc">CmdNote helps you easily create, manage and debug command line tasks. Export your commands as JSON templates, share and reuse them effortlessly.</p>
+                <p class="hero-desc" data-i18n="hero_desc">CmdNote helps you easily create, manage and debug command
+                    line tasks. Export your commands as JSON templates, share and reuse them effortlessly.</p>
+                <div class="update-notes" id="updateNotes">
+                    <div class="update-header">
+                        <span class="update-badge" id="updateBadge"></span>
+                        <h3 class="update-title" data-i18n="update_title">What's New</h3>
+                    </div>
+                    <div class="update-columns" id="updateColumns">
+                        <div class="update-section" id="newFeaturesSection">
+                            <h4 class="update-section-title" id="newFeaturesTitle"></h4>
+                            <ul class="update-list" id="newFeaturesList"></ul>
+                        </div>
+                        <div class="update-section" id="bugFixesSection">
+                            <h4 class="update-section-title" id="bugFixesTitle"></h4>
+                            <ul class="update-list" id="bugFixesList"></ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -41,17 +60,20 @@
                     <div class="feature-card">
                         <div class="feature-icon">📝</div>
                         <h3 data-i18n="feature_1_title">Easy Command Creation</h3>
-                        <p data-i18n="feature_1_desc">Intuitive interface for creating and configuring command line tasks with parameters.</p>
+                        <p data-i18n="feature_1_desc">Intuitive interface for creating and configuring command line
+                            tasks with parameters.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">📦</div>
                         <h3 data-i18n="feature_2_title">JSON Import & Export</h3>
-                        <p data-i18n="feature_2_desc">Import and export your commands as structured JSON files for easy sharing and version control.</p>
+                        <p data-i18n="feature_2_desc">Import and export your commands as structured JSON files for easy
+                            sharing and version control.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">⚡</div>
                         <h3 data-i18n="feature_3_title">Simple Operation & Quick Execution</h3>
-                        <p data-i18n="feature_3_desc">Intuitive and simple operation method to quickly modify parameters and execute commands. Notebook feature for quick reference.</p>
+                        <p data-i18n="feature_3_desc">Intuitive and simple operation method to quickly modify parameters
+                            and execute commands. Notebook feature for quick reference.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">🌐</div>
@@ -65,10 +87,11 @@
         <section id="usage" class="usage-guide">
             <div class="container">
                 <h2 data-i18n="usage_title">Usage Guide</h2>
-                
+
                 <div class="usage-step">
                     <h3 data-i18n="step_1_title">Step 1: Create Command Task</h3>
-                    <p data-i18n="step_1_desc">Fill in the command parameters in the creation page. You can set fixed parts, parameters, directory selections, and key-value inputs.</p>
+                    <p data-i18n="step_1_desc">Fill in the command parameters in the creation page. You can set fixed
+                        parts, parameters, directory selections, and key-value inputs.</p>
                     <div class="carousel" id="step1Carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
@@ -89,7 +112,8 @@
 
                 <div class="usage-step">
                     <h3 data-i18n="step_2_title">Step 2: Edit Command</h3>
-                    <p data-i18n="step_2_desc">Click the edit button on the note page to modify saved commands. Click the edit button on optional parameters to edit added parameters.</p>
+                    <p data-i18n="step_2_desc">Click the edit button on the note page to modify saved commands. Click
+                        the edit button on optional parameters to edit added parameters.</p>
                     <div class="carousel" id="step2Carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
@@ -99,8 +123,10 @@
                                 <img src="edit2.png" alt="Command Edit Page 2">
                             </div>
                         </div>
-                        <button class="carousel-control prev" onclick="moveCarousel(-1, 'step2Carousel')">&#10094;</button>
-                        <button class="carousel-control next" onclick="moveCarousel(1, 'step2Carousel')">&#10095;</button>
+                        <button class="carousel-control prev"
+                            onclick="moveCarousel(-1, 'step2Carousel')">&#10094;</button>
+                        <button class="carousel-control next"
+                            onclick="moveCarousel(1, 'step2Carousel')">&#10095;</button>
                         <div class="carousel-indicators">
                             <span class="indicator active" onclick="goToSlide(0, 'step2Carousel')"></span>
                             <span class="indicator" onclick="goToSlide(1, 'step2Carousel')"></span>
@@ -110,13 +136,15 @@
 
                 <div class="usage-step">
                     <h3 data-i18n="step_3_title">Step 3: View Exported JSON</h3>
-                    <p data-i18n="step_3_desc">After creating the command, the system will generate a structured JSON file. You can copy or download it directly.</p>
+                    <p data-i18n="step_3_desc">After creating the command, the system will generate a structured JSON
+                        file. You can copy or download it directly.</p>
                     <div class="code-demo">
                         <div class="code-header">
                             <span data-i18n="json_preview">JSON Preview</span>
                             <div class="code-actions">
                                 <button class="btn-copy" onclick="copyDemoJson()" data-i18n="btn_copy">Copy</button>
-                                <button class="btn-download" onclick="downloadDemoJson()" data-i18n="btn_download">Download</button>
+                                <button class="btn-download" onclick="downloadDemoJson()"
+                                    data-i18n="btn_download">Download</button>
                             </div>
                         </div>
                         <pre class="code-block"><code id="demoJson">{
@@ -156,15 +184,19 @@
 
                 <div class="usage-step">
                     <h3 data-i18n="step_4_title">Step 4: Execute Commands</h3>
-                    <p data-i18n="step_4_desc">Choose to execute commands in CMD or PowerShell. You can check "Keep Session" to maintain an interactive session after execution, or leave it unchecked to exit automatically. Click "Stop All" to terminate running commands and end the session.</p>
+                    <p data-i18n="step_4_desc">Choose to execute commands in CMD or PowerShell. You can check "Keep
+                        Session" to maintain an interactive session after execution, or leave it unchecked to exit
+                        automatically. Click "Stop All" to terminate running commands and end the session.</p>
                     <div class="carousel" id="step4Carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <img src="exec.png" alt="Command Execution Page">
                             </div>
                         </div>
-                        <button class="carousel-control prev" onclick="moveCarousel(-1, 'step4Carousel')">&#10094;</button>
-                        <button class="carousel-control next" onclick="moveCarousel(1, 'step4Carousel')">&#10095;</button>
+                        <button class="carousel-control prev"
+                            onclick="moveCarousel(-1, 'step4Carousel')">&#10094;</button>
+                        <button class="carousel-control next"
+                            onclick="moveCarousel(1, 'step4Carousel')">&#10095;</button>
                         <div class="carousel-indicators">
                             <span class="indicator active" onclick="goToSlide(0, 'step4Carousel')"></span>
                         </div>
@@ -173,7 +205,8 @@
 
                 <div class="usage-step">
                     <h3 data-i18n="step_5_title">Step 5: Edit Templates</h3>
-                    <p data-i18n="step_5_desc">Click the button below to jump to the template library. You can modify the JSON content and download the updated version.</p>
+                    <p data-i18n="step_5_desc">Click the button below to jump to the template library. You can modify
+                        the JSON content and download the updated version.</p>
                     <p class="usage-tip" data-i18n="step_5_tip"></p>
                     <div class="edit-link-container">
                         <a href="editor.html" class="edit-link" data-i18n="edit_link_text">Go to Template Library →</a>
@@ -182,15 +215,19 @@
 
                 <div class="usage-step">
                     <h3 data-i18n="step_6_title">Step 6: Import File to CmdNote</h3>
-                    <p data-i18n="step_6_desc">Import the downloaded JSON file into CmdNote to start using your command templates.</p>
+                    <p data-i18n="step_6_desc">Import the downloaded JSON file into CmdNote to start using your command
+                        templates.</p>
                     <div class="import-tip">
-                        <p data-i18n="import_tip">Open CmdNote, click the import button, and select your JSON file to load all command templates.</p>
+                        <p data-i18n="import_tip">Open CmdNote, click the import button, and select your JSON file to
+                            load all command templates.</p>
                     </div>
                 </div>
 
                 <div class="usage-step">
                     <h3 data-i18n="step_7_title">Step 7: Thank You for Using</h3>
-                    <p data-i18n="step_7_desc">The software will continue to be updated with new features to make operations more convenient. Thank you for using, and feel free to send your valuable feedback to coulanasaluen@outlook.com.</p>
+                    <p data-i18n="step_7_desc">The software will continue to be updated with new features to make
+                        operations more convenient. Thank you for using, and feel free to send your valuable feedback to
+                        coulanasaluen@outlook.com.</p>
                 </div>
             </div>
         </section>
@@ -198,7 +235,8 @@
         <section id="templates" class="templates-preview">
             <div class="container">
                 <h2 data-i18n="templates_title">Template Preview</h2>
-                <p class="templates-desc" data-i18n="templates_desc">Browse available command templates organized by category.</p>
+                <p class="templates-desc" data-i18n="templates_desc">Browse available command templates organized by
+                    category.</p>
                 <div id="templatePreview" class="template-preview-grid">
                 </div>
                 <div class="view-all-container">
@@ -221,4 +259,5 @@
     <script src="js/i18n.js"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>

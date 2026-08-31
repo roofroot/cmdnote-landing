@@ -8,6 +8,7 @@ const translations = {
         nav_home: "返回首页",
         hero_title: "专业的命令行调试工具",
         hero_desc: "CmdNote 帮助您轻松创建、管理和调试命令行任务。将您的命令导出为 JSON 模板，方便共享和复用。",
+        update_title: "更新公告",
         features_title: "功能特性",
         feature_1_title: "简易命令创建",
         feature_1_desc: "直观的界面，用于创建和配置带有参数的命令行任务。",
@@ -96,6 +97,7 @@ const translations = {
         nav_home: "Home",
         hero_title: "Professional Command Line Debugging Tool",
         hero_desc: "CmdNote helps you easily create, manage and debug command line tasks. Export your commands as JSON templates, share and reuse them effortlessly.",
+        update_title: "What's New",
         features_title: "Features",
         feature_1_title: "Easy Command Creation",
         feature_1_desc: "Intuitive interface for creating and configuring command line tasks with parameters.",
@@ -181,16 +183,16 @@ let currentLang = 'en';
 function setLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('cmdnote_lang', lang);
-    
+
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[lang] && translations[lang][key]) {
             el.innerHTML = translations[lang][key];
         }
     });
-    
+
     document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
-    
+
     const langSelect = document.getElementById('langSelect');
     if (langSelect) {
         langSelect.value = lang;
@@ -204,7 +206,7 @@ function initLanguage() {
     } else {
         setLanguage('en');
     }
-    
+
     const langSelect = document.getElementById('langSelect');
     if (langSelect) {
         langSelect.addEventListener('change', (e) => {
