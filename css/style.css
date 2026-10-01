@@ -397,6 +397,12 @@ html[lang="en"] .feature-card h3 {
     font-style: italic;
 }
 
+.export-format-note {
+    margin: 1.5rem 0 0.75rem;
+    font-size: 0.95rem;
+    color: var(--secondary-color);
+}
+
 .import-tip {
     background: var(--bg-light);
     border-left: 4px solid var(--primary-color);
