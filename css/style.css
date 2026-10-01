@@ -331,6 +331,7 @@ body {
 .feature-icon {
     grid-row: 1;
     grid-column: 1;
+    align-self: start;
     width: 2.5rem;
     height: 2.5rem;
     display: flex;
@@ -345,9 +346,14 @@ body {
 .feature-card h3 {
     grid-row: 1;
     grid-column: 2;
-    align-self: center;
-    font-size: 0.95rem;
+    align-self: start;
+    font-size: 0.85rem;
+    line-height: 1.45;
     color: var(--primary-color);
+}
+
+html[lang="en"] .feature-card h3 {
+    font-size: 0.82rem;
 }
 
 .feature-card p {
