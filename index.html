@@ -60,28 +60,41 @@
             <div class="container">
                 <h2 data-i18n="features_title">Features</h2>
                 <div class="feature-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">📝</div>
-                        <h3 data-i18n="feature_1_title">Easy Command Creation</h3>
-                        <p data-i18n="feature_1_desc">Intuitive interface for creating and configuring command line
-                            tasks with parameters.</p>
+                    <div class="feature-card f-1">
+                        <div class="feature-icon">📁</div>
+                        <h3 data-i18n="feature_1_title">Visual Command Group Management</h3>
+                        <p data-i18n="feature_1_desc">Group commands into custom categories and attach notes to any
+                            command — manage them like a notebook.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card f-2">
                         <div class="feature-icon">📦</div>
-                        <h3 data-i18n="feature_2_title">JSON Import & Export</h3>
-                        <p data-i18n="feature_2_desc">Import and export your commands as structured JSON files for easy
-                            sharing and version control.</p>
+                        <h3 data-i18n="feature_2_title">JSON Import, Export & Plain Editing</h3>
+                        <p data-i18n="feature_2_desc">Plain standard JSON stored locally. Export, import and share
+                            command packs, or edit the JSON with any text editor.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card f-3">
                         <div class="feature-icon">⚡</div>
-                        <h3 data-i18n="feature_3_title">Simple Operation & Quick Execution</h3>
-                        <p data-i18n="feature_3_desc">Intuitive and simple operation method to quickly modify parameters
-                            and execute commands. Notebook feature for quick reference.</p>
+                        <h3 data-i18n="feature_3_title">Built-in Visual Debug Execution</h3>
+                        <p data-i18n="feature_3_desc">Run commands in the built-in panel with real-time output, or copy
+                            them to the native CMD window with one click.</p>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🌐</div>
-                        <h3 data-i18n="feature_4_title">Multi-language Support</h3>
-                        <p data-i18n="feature_4_desc">Full Chinese and English support for templates and interface.</p>
+                    <div class="feature-card f-4">
+                        <div class="feature-icon">🖥️</div>
+                        <h3 data-i18n="feature_4_title">Persistent Interactive Sessions</h3>
+                        <p data-i18n="feature_4_desc">"Keep Session" runs commands continuously: manual input, cd
+                            carry-over and arrow-key history recall.</p>
+                    </div>
+                    <div class="feature-card f-5">
+                        <div class="feature-icon">✂️</div>
+                        <h3 data-i18n="feature_5_title">Auto Create Structured Split</h3>
+                        <p data-i18n="feature_5_desc">Any command line auto-splits in argument order into directories,
+                            switches and fixed text, with clickable path pickers.</p>
+                    </div>
+                    <div class="feature-card f-6">
+                        <div class="feature-icon">🤖</div>
+                        <h3 data-i18n="feature_6_title">AI Command Generation</h3>
+                        <p data-i18n="feature_6_desc">Generate the command line from a one-sentence description.
+                            Offline local Ollama by default; OpenAI-compatible services supported.</p>
                     </div>
                 </div>
             </div>
@@ -93,15 +106,16 @@
 
                 <div class="usage-step">
                     <h3 data-i18n="step_1_title">Step 1: Create Command Task</h3>
-                    <p data-i18n="step_1_desc">Fill in the command parameters in the creation page. You can set fixed
-                        parts, parameters, directory selections, and key-value inputs.</p>
+                    <p data-i18n="step_1_desc">Fill in the command parameters in the creation page. You can also
+                        describe your need in one sentence, generate the command line with AI, then split it into
+                        structured parts with Auto Create in one click.</p>
                     <div class="carousel" id="step1Carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="create_1.png" alt="Command Creation Page 1">
+                                <img src="create1.png" alt="Command Creation Page 1">
                             </div>
                             <div class="carousel-item">
-                                <img src="create_2.png" alt="Command Creation Page 2">
+                                <img src="create2.png" alt="Command Creation Page 2">
                             </div>
                         </div>
                         <button class="carousel-control prev" onclick="moveCarousel(-1)">&#10094;</button>
@@ -115,32 +129,28 @@
 
                 <div class="usage-step">
                     <h3 data-i18n="step_2_title">Step 2: Edit Command</h3>
-                    <p data-i18n="step_2_desc">Click the edit button on the note page to modify saved commands. Click
-                        the edit button on optional parameters to edit added parameters.</p>
+                    <p data-i18n="step_2_desc">Click the edit button on the right side of a command to enter editing
+                        mode, where you can modify, delete the command or edit its note.</p>
                     <div class="carousel" id="step2Carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="edit1.png" alt="Command Edit Page 1">
+                                <img src="edit.png" alt="Command Edit Page">
                             </div>
-                            <div class="carousel-item">
-                                <img src="edit2.png" alt="Command Edit Page 2">
-                            </div>
-                        </div>
-                        <button class="carousel-control prev"
-                            onclick="moveCarousel(-1, 'step2Carousel')">&#10094;</button>
-                        <button class="carousel-control next"
-                            onclick="moveCarousel(1, 'step2Carousel')">&#10095;</button>
-                        <div class="carousel-indicators">
-                            <span class="indicator active" onclick="goToSlide(0, 'step2Carousel')"></span>
-                            <span class="indicator" onclick="goToSlide(1, 'step2Carousel')"></span>
                         </div>
                     </div>
                 </div>
 
                 <div class="usage-step">
-                    <h3 data-i18n="step_3_title">Step 3: View Exported JSON</h3>
-                    <p data-i18n="step_3_desc">After creating the command, the system will generate a structured JSON
-                        file. You can copy or download it directly.</p>
+                    <h3 data-i18n="step_3_title">Step 3: Export JSON File</h3>
+                    <p data-i18n="step_3_desc">Use the export button to export a single command, multiple commands or a
+                        whole group as a JSON file. The exported format is shown below:</p>
+                    <div class="carousel" id="step3Carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="export.png" alt="Command Export Page">
+                            </div>
+                        </div>
+                    </div>
                     <div class="code-demo">
                         <div class="code-header">
                             <span data-i18n="json_preview">JSON Preview</span>
@@ -187,38 +197,46 @@
 
                 <div class="usage-step">
                     <h3 data-i18n="step_4_title">Step 4: Execute Commands</h3>
-                    <p data-i18n="step_4_desc">Choose to execute commands in CMD or PowerShell. You can check "Keep
-                        Session" to maintain an interactive session after execution, or leave it unchecked to exit
-                        automatically. Click "Stop All" to terminate running commands and end the session.</p>
+                    <p data-i18n="step_4_desc">Switch between CMD and PowerShell to run commands. Check "Keep Session"
+                        to stay in the session and type commands directly in the terminal; unchecked, the window exits
+                        automatically after execution. Click "Stop All" to terminate running commands and end the
+                        session.</p>
                     <div class="carousel" id="step4Carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <img src="exec.png" alt="Command Execution Page">
                             </div>
                         </div>
-                        <button class="carousel-control prev"
-                            onclick="moveCarousel(-1, 'step4Carousel')">&#10094;</button>
-                        <button class="carousel-control next"
-                            onclick="moveCarousel(1, 'step4Carousel')">&#10095;</button>
-                        <div class="carousel-indicators">
-                            <span class="indicator active" onclick="goToSlide(0, 'step4Carousel')"></span>
+                    </div>
+                </div>
+
+                <div class="usage-step">
+                    <h3 data-i18n="step_5_title">Step 5: Command History</h3>
+                    <p data-i18n="step_5_desc">In "Keep Session" mode, commands you type manually are recorded into
+                        the history list. Click a history entry to copy the command, or send it to Auto Create to split
+                        it into a structured command quickly.</p>
+                    <div class="carousel" id="step5Carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="history.png" alt="Command History Page">
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="usage-step">
-                    <h3 data-i18n="step_5_title">Step 5: Edit Templates</h3>
-                    <p data-i18n="step_5_desc">Click the button below to jump to the template library. You can modify
+                    <h3 data-i18n="step_6_title">Step 6: Edit Templates</h3>
+                    <p data-i18n="step_6_desc">Click the button below to jump to the template library. You can modify
                         the JSON content and download the updated version.</p>
-                    <p class="usage-tip" data-i18n="step_5_tip"></p>
+                    <p class="usage-tip" data-i18n="step_6_tip"></p>
                     <div class="edit-link-container">
                         <a href="editor.html" class="edit-link" data-i18n="edit_link_text">Go to Template Library →</a>
                     </div>
                 </div>
 
                 <div class="usage-step">
-                    <h3 data-i18n="step_6_title">Step 6: Import File to CmdNote</h3>
-                    <p data-i18n="step_6_desc">Import the downloaded JSON file into CmdNote to start using your command
+                    <h3 data-i18n="step_7_title">Step 7: Import File to CmdNote</h3>
+                    <p data-i18n="step_7_desc">Import the downloaded JSON file into CmdNote to start using your command
                         templates.</p>
                     <div class="import-tip">
                         <p data-i18n="import_tip">Open CmdNote, click the import button, and select your JSON file to
@@ -227,8 +245,8 @@
                 </div>
 
                 <div class="usage-step">
-                    <h3 data-i18n="step_7_title">Step 7: Thank You for Using</h3>
-                    <p data-i18n="step_7_desc">The software will continue to be updated with new features to make
+                    <h3 data-i18n="step_8_title">Step 8: Thank You for Using</h3>
+                    <p data-i18n="step_8_desc">The software will continue to be updated with new features to make
                         operations more convenient. Thank you for using, and feel free to send your valuable feedback to
                         coulanasaluen@outlook.com.</p>
                 </div>

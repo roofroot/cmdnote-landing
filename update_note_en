@@ -1,9 +1,10 @@
 version 1.0.2
 New Features
-1. Added group export and multi-command export functions. It supports batch export by groups and simultaneous export of multiple commands, which greatly improves the efficiency of batch operations and meets diverse data export requirements.
-2. Launched a new editing mode. After entering the editing mode, users can delete any groups or single commands freely, providing higher operation flexibility and helping users quickly sort out and simplify groups and commands.
-3. Added cancel operation for command editing and creation. Click the cancel button during command editing or creation to clear all current editing content at one time, avoiding redundant content caused by misoperation and optimizing the overall editing experience.
+1.Added AI command generation. Supports one-click CMD generation from Chinese/English descriptions, with local Ollama offline support and compatibility with mainstream remote LLMs. AI settings can be imported and exported.
+2. Added Auto Create intelligent splitting. Automatically parses command lines into directories, parameters and fixed text to improve editing efficiency.
+3. Persistent sessions support manual command input and auto history saving. Session records can be quickly added to the command set for easier debugging.
 Optimizations & Bug Fixes
-1. Optimized the display logic of interface buttons. The original comment button and command edit button are only visible in editing mode, making the normal browsing interface cleaner and reducing visual interference.
-2. Fixed a known crash issue. Resolved the bug that caused the application to crash when clicking save after deleting the parameter list being edited, improving the operational stability and safety of the application.
-3. Optimized the note typesetting effect. Improved the page layout and content display style to make the note content neater and clearer, and enhance the overall reading experience.
+1. Optimized path parameter selection, supporting both file and folder picking.
+2. Fixed terminal output garbled characters and optimized real-time output streaming for smoother experience.
+3. Optimized command persistence. New commands are automatically saved without manual operation to prevent data loss.
+4. Improved settings page layout with scroll support, fully usable in small window sizes.
