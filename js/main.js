@@ -84,7 +84,7 @@ function loadTemplatePreview() {
             if (!groups[task.group]) {
                 groups[task.group] = [];
             }
-            groups[task.group].push(task.name);
+            groups[task.group].push(task);
         });
 
         const previewContainer = document.getElementById('templatePreview');
@@ -96,7 +96,7 @@ function loadTemplatePreview() {
             card.innerHTML = `
                 <h4>${group}</h4>
                 <ul>
-                    ${tasks.map(task => `<li>${task}</li>`).join('')}
+                    ${tasks.map(task => `<li><a href="editor.html?task=${task.id}">${task.name}</a></li>`).join('')}
                 </ul>
             `;
             previewContainer.appendChild(card);

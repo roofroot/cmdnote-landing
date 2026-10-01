@@ -612,6 +612,17 @@ html[lang="en"] .feature-card h3 {
     color: var(--text-color);
 }
 
+.template-group-card li a {
+    display: block;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.template-group-card li a:hover {
+    color: var(--primary-color);
+}
+
 .template-group-card li:last-child {
     border-bottom: none;
 }

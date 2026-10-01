@@ -7,8 +7,14 @@ function loadTemplates() {
         
         renderTemplateTree(data);
         
-        if (data.command_tasks && data.command_tasks.length > 0) {
-            loadItemToEditor(data.command_tasks[0]);
+        const targetId = new URLSearchParams(window.location.search).get('task');
+        const target = targetId !== null
+            ? data.command_tasks.find(t => String(t.id) === targetId)
+            : data.command_tasks[0];
+        
+        if (target) {
+            selectTreeItem(target.id);
+            loadItemToEditor(target);
         }
         
         updateStatus(currentLang === 'zh' ? '就绪' : 'Ready');
@@ -16,6 +22,18 @@ function loadTemplates() {
         console.error('Failed to load templates:', error);
         updateStatus(currentLang === 'zh' ? '加载模板失败' : 'Failed to load templates');
     }
+}
+
+function selectTreeItem(id) {
+    document.querySelectorAll('.tree-item').forEach(i => {
+        const hit = i.dataset.id === String(id);
+        i.classList.toggle('active', hit);
+        if (hit) {
+            const group = i.closest('.tree-group');
+            if (group) group.classList.add('expanded');
+            i.scrollIntoView({ block: 'nearest' });
+        }
+    });
 }
 
 function renderTemplateTree(data) {
@@ -47,10 +65,10 @@ function renderTemplateTree(data) {
         tasks.forEach(task => {
             const itemDiv = document.createElement('div');
             itemDiv.className = 'tree-item';
+            itemDiv.dataset.id = task.id;
             itemDiv.textContent = task.name;
             itemDiv.addEventListener('click', () => {
-                document.querySelectorAll('.tree-item').forEach(i => i.classList.remove('active'));
-                itemDiv.classList.add('active');
+                selectTreeItem(task.id);
                 loadItemToEditor(task);
             });
             itemsDiv.appendChild(itemDiv);
