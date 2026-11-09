@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CmdNote - Command Line Debugging Tool</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>CmdNote</h1>
+                <span class="tagline" data-i18n="tagline">Command Line Debugging Tool</span>
+            </div>
+            <nav class="nav">
+                <a href="#features" data-i18n="nav_features">Features</a>
+                <a href="#usage" data-i18n="nav_usage">Usage Guide</a>
+                <a href="#templates" data-i18n="nav_templates">Templates</a>
+                <a href="editor.html" data-i18n="nav_editor">JSON Editor</a>
+                <select id="langSelect" class="lang-select">
+                    <option value="en">English</option>
+                    <option value="zh">中文</option>
+                </select>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2 data-i18n="hero_title">Professional Command Line Debugging Tool</h2>
+                <p class="hero-desc" data-i18n="hero_desc">CmdNote helps you easily create, manage and debug command
+                    line tasks. Export your commands as JSON templates, share and reuse them effortlessly.</p>
+                <div class="update-notes" id="updateNotes">
+                    <div class="update-header">
+                        <span class="update-badge" id="updateBadge"></span>
+                        <h3 class="update-title" data-i18n="update_title">What's New</h3>
+                    </div>
+                    <a class="update-store-link" href="https://apps.microsoft.com/detail/9PM4VGNCK04B" target="_blank"
+                        rel="noopener noreferrer" data-i18n="update_store_link">Get the latest version from Microsoft
+                        Store →</a>
+                    <div class="update-columns" id="updateColumns">
+                        <div class="update-section" id="newFeaturesSection">
+                            <h4 class="update-section-title" id="newFeaturesTitle"></h4>
+                            <ul class="update-list" id="newFeaturesList"></ul>
+                        </div>
+                        <div class="update-section" id="bugFixesSection">
+                            <h4 class="update-section-title" id="bugFixesTitle"></h4>
+                            <ul class="update-list" id="bugFixesList"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2 data-i18n="features_title">Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-card f-1">
+                        <div class="feature-icon">📁</div>
+                        <h3 data-i18n="feature_1_title">Command Groups</h3>
+                        <p data-i18n="feature_1_desc">Group commands into custom categories and attach notes to any
+                            command — manage them like a notebook.</p>
+                    </div>
+                    <div class="feature-card f-2">
+                        <div class="feature-icon">📦</div>
+                        <h3 data-i18n="feature_2_title">JSON Import & Export</h3>
+                        <p data-i18n="feature_2_desc">Plain standard JSON stored locally. Export, import and share
+                            command packs, or edit the JSON with any text editor.</p>
+                    </div>
+                    <div class="feature-card f-3">
+                        <div class="feature-icon">⚡</div>
+                        <h3 data-i18n="feature_3_title">Visual Debug Execution</h3>
+                        <p data-i18n="feature_3_desc">Run commands in the built-in panel with real-time output, or copy
+                            them to the native CMD window with one click.</p>
+                    </div>
+                    <div class="feature-card f-4">
+                        <div class="feature-icon">🖥️</div>
+                        <h3 data-i18n="feature_4_title">Persistent Sessions</h3>
+                        <p data-i18n="feature_4_desc">"Keep Session" runs commands continuously: manual input, cd
+                            carry-over and arrow-key history recall.</p>
+                    </div>
+                    <div class="feature-card f-5">
+                        <div class="feature-icon">✂️</div>
+                        <h3 data-i18n="feature_5_title">Auto Create Split</h3>
+                        <p data-i18n="feature_5_desc">Any command line auto-splits in argument order into directories,
+                            switches and fixed text, with clickable path pickers.</p>
+                    </div>
+                    <div class="feature-card f-6">
+                        <div class="feature-icon">🤖</div>
+                        <h3 data-i18n="feature_6_title">AI Command Generation</h3>
+                        <p data-i18n="feature_6_desc">Generate the command line from a one-sentence description.
+                            Offline local Ollama by default; OpenAI-compatible services supported.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="usage" class="usage-guide">
+            <div class="container">
+                <h2 data-i18n="usage_title">Usage Guide</h2>
+
+                <div class="usage-step">
+                    <h3 data-i18n="step_1_title">Step 1: Create Command Task</h3>
+                    <p data-i18n="step_1_desc">Fill in the command parameters in the creation page. You can also
+                        describe your need in one sentence, generate the command line with AI, then split it in
+                        argument order with Auto Create in one click.</p>
+                    <div class="carousel" id="step1Carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="create1.png" alt="Command Creation Page 1">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="create2.png" alt="Command Creation Page 2">
+                            </div>
+                        </div>
+                        <button class="carousel-control prev" onclick="moveCarousel(-1)">&#10094;</button>
+                        <button class="carousel-control next" onclick="moveCarousel(1)">&#10095;</button>
+                        <div class="carousel-indicators">
+                            <span class="indicator active" onclick="goToSlide(0)"></span>
+                            <span class="indicator" onclick="goToSlide(1)"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="usage-step">
+                    <h3 data-i18n="step_2_title">Step 2: Edit Command</h3>
+                    <p data-i18n="step_2_desc">Click the edit button on the right to enter editing mode, where you
+                        can edit, delete or annotate all commands.</p>
+                    <div class="carousel" id="step2Carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="edit.png" alt="Command Edit Page">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="usage-step">
+                    <h3 data-i18n="step_3_title">Step 3: Execute Commands</h3>
+                    <p data-i18n="step_3_desc">Switch between CMD and PowerShell to run commands. Check "Keep
+                        Session" to run commands continuously in the same session, with manual command input
+                        supported; leave it unchecked to exit automatically after execution. Click "Stop All" to
+                        terminate running commands and end the session.</p>
+                    <div class="carousel" id="step3Carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="exec.png" alt="Command Execution Page">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="usage-step">
+                    <h3 data-i18n="step_4_title">Step 4: Command History</h3>
+                    <p data-i18n="step_4_desc">In "Keep Session" mode, commands you type manually are recorded into
+                        the history list. Click a history entry to copy the command, or send it to Auto Create to split
+                        it into a structured command quickly.</p>
+                    <div class="carousel" id="step4Carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="history.png" alt="Command History Page">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="usage-step">
+                    <h3 data-i18n="step_5_title">Step 5: Export JSON File</h3>
+                    <p data-i18n="step_5_desc">Use the export button to export a single command, multiple commands or a
+                        whole group as a JSON file.</p>
+                    <div class="carousel" id="step5Carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="export.png" alt="Command Export Page">
+                            </div>
+                        </div>
+                    </div>
+                    <p class="export-format-note" data-i18n="json_format_note">The exported format is shown below:</p>
+                    <div class="code-demo">
+                        <div class="code-header">
+                            <span data-i18n="json_preview">JSON Preview</span>
+                            <div class="code-actions">
+                                <button class="btn-copy" onclick="copyDemoJson()" data-i18n="btn_copy">Copy</button>
+                                <button class="btn-download" onclick="downloadDemoJson()"
+                                    data-i18n="btn_download">Download</button>
+                            </div>
+                        </div>
+                        <pre class="code-block"><code id="demoJson">{
+  "command_tasks": [
+    {
+      "id": 0,
+      "name": "dir",
+      "parts": [
+        {
+          "Fixed": "dir"
+        },
+        {
+          "Dir": {
+            "key": "directory"
+          }
+        },
+        {
+          "Param": {
+            "name": "mode",
+            "options": [
+              "/a",
+              "/w",
+              "/s"
+            ]
+          }
+        }
+      ],
+      "is_blocking": false,
+      "group": "Directory",
+      "note": ""
+    }
+  ],
+  "cmd_next_id": 1
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="usage-step">
+                    <h3 data-i18n="step_6_title">Step 6: Edit Templates</h3>
+                    <p data-i18n="step_6_desc">Click the button below to jump to the template library. You can modify
+                        the JSON content and download the updated version.</p>
+                    <p class="usage-tip" data-i18n="step_6_tip"></p>
+                    <div class="edit-link-container">
+                        <a href="editor.html" class="edit-link" data-i18n="edit_link_text">Go to Template Library →</a>
+                    </div>
+                </div>
+
+                <div class="usage-step">
+                    <h3 data-i18n="step_7_title">Step 7: Import File to CmdNote</h3>
+                    <p data-i18n="step_7_desc">Import the downloaded JSON file into CmdNote to start using your command
+                        templates.</p>
+                    <div class="import-tip">
+                        <p data-i18n="import_tip">Open CmdNote, click the import button, and select your JSON file to
+                            load all command templates.</p>
+                    </div>
+                </div>
+
+                <div class="usage-step">
+                    <h3 data-i18n="step_8_title">Step 8: Thank You for Using</h3>
+                    <p data-i18n="step_8_desc">The software will continue to be updated with new features to make
+                        operations more convenient. Thank you for using, and feel free to send your valuable feedback to
+                        coulanasaluen@outlook.com.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="templates" class="templates-preview">
+            <div class="container">
+                <h2 data-i18n="templates_title">Template Preview</h2>
+                <p class="templates-desc" data-i18n="templates_desc">Browse available command templates organized by
+                    category.</p>
+                <div id="templatePreview" class="template-preview-grid">
+                </div>
+                <div class="view-all-container">
+                    <a href="editor.html" class="btn-primary" data-i18n="view_all_templates">View All Templates</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 CmdNote. <span data-i18n="footer_rights">All rights reserved.</span></p>
+            <p class="footer-links">
+                <a href="privacy.html" data-i18n="footer_privacy">Privacy Policy</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/update_notes.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

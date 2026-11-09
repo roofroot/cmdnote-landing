@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CmdNote</title>
+<script>
+  // 旧深链兜底：站点搬到 /cmdnote/ 后，历史上分享过的 /editor.html?task=N 这类链接
+  // 由 GitHub Pages 的自定义 404 接到这里，再转到 /cmdnote/ 下的同名路径。
+  // 白名单之外不跳，且已经在 /cmdnote/ 下的缺失路径不再跳，避免自环。
+  (function () {
+    var p = location.pathname.replace(/^\/+/, '');
+    if (p.indexOf('cmdnote/') === 0) return;
+    var page = /^(index|editor|privacy)\.html$/.test(p);
+    var asset = /^(css|js)\//.test(p) || /\.(png|jpe?g|svg|ico|json|webp|woff2?)$/i.test(p);
+    if (page || asset) {
+      location.replace('/cmdnote/' + p + location.search + location.hash);
+    }
+  })();
+</script>
+</head>
+<body>
+<p id="m">404 &mdash; <a href="/cmdnote/">CmdNote</a></p>
+</body>
+</html>
