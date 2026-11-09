@@ -278,7 +278,7 @@ body {
 
 .feature-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.1rem;
 }
 
@@ -327,6 +327,7 @@ body {
 .feature-card.f-4 { --accent: #6ee7b7; --accent-2: #a7f3d0; --glow: rgba(110, 231, 183, 0.3); }
 .feature-card.f-5 { --accent: #f9a8d4; --accent-2: #fbcfe8; --glow: rgba(249, 168, 212, 0.3); }
 .feature-card.f-6 { --accent: #86efac; --accent-2: #bbf7d0; --glow: rgba(134, 239, 172, 0.3); }
+.feature-card.f-7 { --accent: #a5b4fc; --accent-2: #c7d2fe; --glow: rgba(165, 180, 252, 0.3); }
 
 .feature-icon {
     grid-row: 1;
