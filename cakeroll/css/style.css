@@ -574,6 +574,12 @@ img {
     font-size: 0.88rem;
 }
 
+.platform .btn {
+    margin-top: 14px;
+    font-size: 0.88rem;
+    padding: 9px 18px;
+}
+
 .badge {
     font-size: 0.7rem;
     font-weight: 600;
