@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蛋糕卷 CakeRoll - 隐私政策</title>
+    <link rel="icon" href="shots/icon.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="index.html">
+                <img src="shots/icon.png" alt="蛋糕卷 CakeRoll">
+                <span>
+                    <span class="brand-name">蛋糕卷 CakeRoll</span>
+                    <span class="brand-tag" data-i18n="tagline">本地优先的笔记应用</span>
+                </span>
+            </a>
+            <nav class="nav header-nav">
+                <a href="index.html" data-i18n="nav_home">返回首页</a>
+                <a href="privacy.html" data-i18n="nav_privacy">隐私政策</a>
+                <select id="langSelect" class="lang-select" aria-label="Language">
+                    <option value="zh">中文</option>
+                    <option value="en">English</option>
+                </select>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-head">
+            <div class="container">
+                <h1 data-i18n="p_title">隐私政策</h1>
+                <p class="page-meta" data-i18n="p_effective">生效日期：2026-11-22</p>
+                <p class="page-meta" data-i18n="p_scope">适用范围：蛋糕卷 CakeRoll（Windows 桌面版）</p>
+            </div>
+        </section>
+
+        <section class="privacy-wrap">
+            <div class="container">
+                <div class="privacy-card">
+                    <section>
+                        <h2 data-i18n="p_s1_t">1. 概述</h2>
+                        <p data-i18n="p_s1_p1">蛋糕卷是一款本地优先的笔记应用。你的笔记、附件和音频默认保存在本机，不需要注册账号，开发者也没有接收这些内容的服务器。</p>
+                        <p data-i18n="p_s1_p2">本政策说明应用会保存什么、在什么情况下联网、麦克风等权限用于什么，以及你可以怎样删除自己的数据。使用蛋糕卷即表示你了解本政策。</p>
+                    </section>
+
+                    <section>
+                        <h2 data-i18n="p_s2_t">2. 数据保存在哪里</h2>
+                        <ul>
+                            <li data-i18n="p_s2_l1">默认保存在 <code>%LOCALAPPDATA%\CakeRoll</code>，包括数据库 <code>cakeroll.db</code>、笔记附件与音频文件。</li>
+                            <li data-i18n="p_s2_l3">卸载应用通常不会自动删除该目录中的笔记；如需彻底清除，请手动删除该目录，或先导出备份再删除。</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2 data-i18n="p_s3_t">3. 我们不会收集什么</h2>
+                        <p data-i18n="p_s3_p1">蛋糕卷没有账号体系，也不接入统计、广告、崩溃上报或用户画像 SDK。应用不会收集你的姓名、手机号、邮箱、身份证号、位置、通讯录、设备标识或使用行为，也不会在后台把本地内容上传给开发者。</p>
+                        <p data-i18n="p_s3_p2">应用只在你主动使用相应功能时联网，且连接对象由你决定，详见下一节。</p>
+                    </section>
+
+                    <section>
+                        <h2 data-i18n="p_s4_t">4. 联网功能与触发条件</h2>
+
+                        <h3 data-i18n="p_s4_1_t">局域网同步（默认关闭）</h3>
+                        <p data-i18n="p_s4_1_p">当你在设置里开启同步服务后，应用会在本机启动一个 HTTP 服务，并显示二维码与网址供同一局域网内的设备连接。配对需要令牌或审批，数据只在你的设备之间传输，不经过开发者服务器。不方便扫码的设备，也可以直接填写局域网内另一台设备的网址来同步，请求只发往那台设备。你可以随时关闭该服务。</p>
+
+                        <h3 data-i18n="p_s4_3_t">MCP 接入（默认关闭）</h3>
+                        <p data-i18n="p_s4_3_p">开启 MCP 后，应用会提供本机或局域网地址与 Bearer 令牌，供 Claude、Cursor、Qoder 等支持 MCP 的客户端访问。每个写入请求都会在应用内弹出审批，你可以拒绝。服务地址、令牌与开关状态均保存在本地，可随时关闭或重置。</p>
+
+                        <h3 data-i18n="p_s4_4_t">内置资源</h3>
+                        <p data-i18n="p_s4_4_p">示例笔记、示例曲目、小精灵形象与配音随应用提供，读取时不需要联网。</p>
+                    </section>
+
+                    <section>
+                        <h2 data-i18n="p_s6_t">5. 配音、提醒与通知</h2>
+                        <p data-i18n="p_s6_p1">小精灵的配音随应用提供，读取时不联网；计划提醒使用本地通知。这些功能不依赖开发者的推送服务器，也不会把提醒内容发送到外部。</p>
+                    </section>
+
+                    <section>
+                        <h2 data-i18n="p_s7_t">6. Microsoft Store 与可选换装</h2>
+                        <p data-i18n="p_s7_p1">Windows 版通过 Microsoft Store 分发。应用与全部功能本身不需要购买，小精灵也能完整使用；换装加载项（CakeRollPetUnlock）只是可选外观。如果你选择购买，支付流程由 Microsoft 处理，蛋糕卷不会接触你的银行卡号、账单地址或账户密码。</p>
+                        <p data-i18n="p_s7_p2">应用只会向系统查询该加载项是否已激活，以决定是否显示额外换装。购买记录与支付信息由 Microsoft 按其隐私声明管理。</p>
+                    </section>
+
+                    <section>
+                        <h2 data-i18n="p_s8_t">7. 你自行接入的第三方客户端</h2>
+                        <p data-i18n="p_s8_p1">如果你通过 MCP 让第三方 AI 客户端读写笔记，这些客户端及其背后的服务商可能按其自身规则处理数据。蛋糕卷无法控制第三方的行为，请在接入前确认你信任该客户端，并只授予必要的访问范围。</p>
+                    </section>
+
+                    <section>
+                        <h2 data-i18n="p_s9_t">8. 数据的导出与删除</h2>
+                        <ul>
+                            <li data-i18n="p_s9_l1">你可以随时在应用内导出 <code>.rollcake</code> 文件，把笔记和相关文件打包备份。</li>
+                            <li data-i18n="p_s9_l2">在应用内删除笔记后，该笔记会从列表移除；如需彻底清除，可删除数据目录。</li>
+                            <li data-i18n="p_s9_l3">关闭局域网同步或 MCP 后，对应的网络服务立即停止监听。</li>
+                            <li data-i18n="p_s9_l4">卸载应用不会自动删除 Windows 用户目录中的笔记，请按需备份或手动清理。</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2 data-i18n="p_s10_t">9. 儿童</h2>
+                        <p data-i18n="p_s10_p">蛋糕卷不面向儿童收集个人信息，也没有针对未成年人的数据采集行为。应用内的内容完全由使用者自己创建和管理。</p>
+                    </section>
+
+                    <section>
+                        <h2 data-i18n="p_s11_t">10. 政策更新与联系</h2>
+                        <p data-i18n="p_s11_p1">如果应用功能或数据处理方式发生变化，本政策会同步更新，并在本页标注新的生效日期。继续使用即表示你接受更新后的政策。</p>
+                        <p data-i18n="p_s11_p2">如有疑问，请联系：<a href="mailto:coulanasaluen@outlook.com">coulanasaluen@outlook.com</a>。</p>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <span>&copy; 2026 CakeRoll. <span data-i18n="footer_rights">保留所有权利。</span></span>
+            <span>
+                <a href="index.html" data-i18n="footer_home_back">返回蛋糕卷首页</a>
+                &nbsp;·&nbsp;
+                <a href="../index.html" data-i18n="footer_home">回到 Coulana</a>
+            </span>
+        </div>
+    </footer>
+
+    <script src="js/i18n.js"></script>
+</body>
+
+</html>

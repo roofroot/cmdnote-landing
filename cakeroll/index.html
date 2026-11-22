@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蛋糕卷 CakeRoll - 本地优先的笔记应用</title>
+    <meta name="description" content="蛋糕卷是一款本地优先的跨平台笔记应用：块式笔记、计划看板、歌单与跳舞草、小精灵助手、局域网同步与 MCP 接入。">
+    <link rel="icon" href="shots/icon.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <symbol id="i-note" viewBox="0 0 24 24">
+            <path d="M6 3.6h8.4L19 8.2v12.2H6z" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linejoin="round" />
+            <path d="M14 3.8V8h4.3M9 12h7M9 15.4h7M9 18.4h4.4" fill="none" stroke="currentColor"
+                stroke-width="1.7" stroke-linecap="round" />
+        </symbol>
+        <symbol id="i-blocks" viewBox="0 0 24 24">
+            <rect x="3.4" y="4.2" width="7.2" height="7.2" rx="2" fill="none" stroke="currentColor"
+                stroke-width="1.7" />
+            <rect x="13.4" y="4.2" width="7.2" height="7.2" rx="2" fill="none" stroke="currentColor"
+                stroke-width="1.7" />
+            <rect x="3.4" y="14.2" width="17.2" height="5.6" rx="2" fill="none" stroke="currentColor"
+                stroke-width="1.7" />
+        </symbol>
+        <symbol id="i-calendar" viewBox="0 0 24 24">
+            <rect x="3.6" y="5.2" width="16.8" height="15" rx="3" fill="none" stroke="currentColor"
+                stroke-width="1.7" />
+            <path d="M3.8 9.4h16.4M8 3.4v3.4M16 3.4v3.4" fill="none" stroke="currentColor"
+                stroke-width="1.7" stroke-linecap="round" />
+            <circle cx="12" cy="14.4" r="1.6" fill="currentColor" />
+        </symbol>
+        <symbol id="i-music" viewBox="0 0 24 24">
+            <path d="M9.4 17.4V6.6l8-1.6v10.6" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linejoin="round" />
+            <circle cx="7.2" cy="17.6" r="2.4" fill="none" stroke="currentColor" stroke-width="1.7" />
+            <circle cx="15.4" cy="15.8" r="2.4" fill="none" stroke="currentColor" stroke-width="1.7" />
+        </symbol>
+        <symbol id="i-leaf" viewBox="0 0 24 24">
+            <path d="M19.4 4.4C11 4.6 5 8.4 5 14.2c0 2.6 1.9 4.6 4.6 4.6 5.8 0 9.6-6 9.8-14.4z"
+                fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+            <path d="M6.4 23c.8-4.6 3.4-8.6 7.8-11.4" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" />
+        </symbol>
+        <symbol id="i-sync" viewBox="0 0 24 24">
+            <path d="M4.4 10.4a8 8 0 0 1 13.4-3.6l1.8 1.8M19.6 13.6a8 8 0 0 1-13.4 3.6L4.4 15.4"
+                fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                stroke-linejoin="round" />
+            <path d="M19.8 4.8v4h-4M4.2 19.2v-4h4" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="i-box" viewBox="0 0 24 24">
+            <path d="M4 7.4l8-3.8 8 3.8v9.2L12 20.4l-8-3.8z" fill="none" stroke="currentColor"
+                stroke-width="1.7" stroke-linejoin="round" />
+            <path d="M4.2 7.6L12 11l7.8-3.4M12 11v9" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linejoin="round" />
+        </symbol>
+        <symbol id="i-plug" viewBox="0 0 24 24">
+            <path d="M8.6 3.4v5.2M15.4 3.4v5.2M6.4 8.6h11.2v2.6a5.6 5.6 0 0 1-11.2 0z" fill="none"
+                stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 16.8v3.8" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" />
+        </symbol>
+        <symbol id="i-windows" viewBox="0 0 24 24">
+            <path d="M3.4 5.6l7.2-1v7.2H3.4zM12.2 4.4l8.4-1.2v8.6h-8.4zM3.4 12.6h7.2v7.2l-7.2-1zM12.2 12.6h8.4v8.6l-8.4-1.2z"
+                fill="currentColor" />
+        </symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24">
+            <rect x="6.4" y="2.8" width="11.2" height="18.4" rx="2.8" fill="none" stroke="currentColor"
+                stroke-width="1.7" />
+            <path d="M10.4 5.4h3.2" fill="none" stroke="currentColor" stroke-width="1.7"
+                stroke-linecap="round" />
+        </symbol>
+    </svg>
+
+    <header class="site-header">
+        <div class="container">
+            <a class="brand" href="../index.html">
+                <img src="shots/icon.png" alt="蛋糕卷 CakeRoll">
+                <span>
+                    <span class="brand-name">蛋糕卷 CakeRoll</span>
+                    <span class="brand-tag" data-i18n="tagline">本地优先的笔记应用</span>
+                </span>
+            </a>
+            <nav class="nav header-nav">
+                <a href="#features" data-i18n="nav_features">功能</a>
+                <a href="#screens" data-i18n="nav_screens">界面</a>
+                <a href="#usage" data-i18n="nav_usage">使用</a>
+                <a href="#platforms" data-i18n="nav_platforms">平台</a>
+                <a href="#faq" data-i18n="nav_faq">常见问题</a>
+                <select id="langSelect" class="lang-select" aria-label="Language">
+                    <option value="zh">中文</option>
+                    <option value="en">English</option>
+                </select>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-copy">
+                    <h1 data-i18n="hero_title"><span class="hero-title-line">拥有蛋糕卷笔记，</span><span class="hero-title-line">记录你的日常，</span><span class="hero-title-line">给乏味的生活加点甜</span></h1>
+                    <p class="hero-lead" data-i18n="hero_lead">蛋糕卷是一款本地优先的跨平台笔记应用。写下的内容保存在你自己的设备上，需要时再通过局域网同步到手机、平板或另一台电脑。</p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="#platforms" data-i18n="hero_cta_primary">下载与平台</a>
+                        <a class="btn btn-ghost" href="#features" data-i18n="hero_cta_secondary">看看功能</a>
+                    </div>
+                    <p class="hero-note" data-i18n="hero_note">Windows 版免费。小精灵的所有功能都能直接使用；额外换装只是可选外观，不影响任何功能。</p>
+                </div>
+                <div class="hero-art">
+                    <img src="shots/greenhouse.gif" width="640" height="547" alt="CakeRoll">
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="section alt">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow" data-i18n="features_eyebrow">FEATURES</div>
+                    <h2 data-i18n="features_title">一个小本子，几件顺手的事</h2>
+                </div>
+                <div class="feature-grid">
+                    <article class="feature">
+                        <div class="feature-icon"><svg><use href="#i-note"></use></svg></div>
+                        <h3 data-i18n="f1_t">本地优先，不需要账号</h3>
+                        <p data-i18n="f1_d">笔记保存在本机数据库，不注册、不登录，也没有开发者云端。删不删、备份到哪，都由你决定。</p>
+                    </article>
+                    <article class="feature">
+                        <div class="feature-icon"><svg><use href="#i-blocks"></use></svg></div>
+                        <h3 data-i18n="f2_t">块式编辑</h3>
+                        <p data-i18n="f2_d">标题与序号、列表、表格、代码块、折叠块、图片，都在工具栏里随手插入，读起来清清爽爽；正文兼容 Markdown 格式。</p>
+                    </article>
+                    <article class="feature">
+                        <div class="feature-icon"><svg><use href="#i-calendar"></use></svg></div>
+                        <h3 data-i18n="f3_t">计划与看板</h3>
+                        <p data-i18n="f3_d">在笔记里插入带时间的任务，按天查看计划看板；任务开始或未完成时，小精灵会来提醒。</p>
+                    </article>
+                    <article class="feature">
+                        <div class="feature-icon"><svg><use href="#i-music"></use></svg></div>
+                        <h3 data-i18n="f4_t">歌单与跳舞草</h3>
+                        <p data-i18n="f4_d">把音频插进笔记，它就变成歌单；播放时，魔性的跳舞草也会跟着旋律摇摆哦~</p>
+                    </article>
+                    <article class="feature">
+                        <div class="feature-icon"><svg><use href="#i-leaf"></use></svg></div>
+                        <h3 data-i18n="f5_t">小精灵助手</h3>
+                        <p data-i18n="f5_d">十款蛋糕卷皮肤，会说话、能听指令，也能被你拖到屏幕任意角落；闲置时就在旁边安静待着。</p>
+                    </article>
+                    <article class="feature">
+                        <div class="feature-icon"><svg><use href="#i-sync"></use></svg></div>
+                        <h3 data-i18n="f6_t">局域网同步</h3>
+                        <p data-i18n="f6_d">一台设备打开同步服务，另一台扫码或输入网址就能同步。数据只在你的设备之间走，没有云端中转。</p>
+                    </article>
+                    <article class="feature">
+                        <div class="feature-icon"><svg><use href="#i-box"></use></svg></div>
+                        <h3 data-i18n="f7_t">单文件迁移</h3>
+                        <p data-i18n="f7_d">导出为 .rollcake 文件，笔记和音频打包在一起；换设备或做备份，一个文件就够了。</p>
+                    </article>
+                    <article class="feature">
+                        <div class="feature-icon"><svg><use href="#i-plug"></use></svg></div>
+                        <h3 data-i18n="f8_t">MCP 接入 AI</h3>
+                        <p data-i18n="f8_d">内置 MCP 服务，Claude、Cursor、Qoder 等客户端可以直接创建和更新笔记；默认关闭，写入前会请你审批。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="screens" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow" data-i18n="screens_eyebrow">SCREENS</div>
+                    <h2 data-i18n="screens_title">它长什么样</h2>
+                    <p data-i18n="screens_lead">下面是桌面端与手机端的真实界面。截图均来自应用内部。</p>
+                </div>
+
+                <div class="shot-row">
+                    <div class="shot-copy">
+                        <h3 data-i18n="sc1_t">笔记列表：一眼找到那一篇</h3>
+                        <p data-i18n="sc1_d">按分类分组，标题和更新时间排得整整齐齐。带音频的笔记会标出曲目数量，搜索框可以直接找标题、正文和分类。</p>
+                        <ul>
+                            <li data-i18n="sc1_l1">分类色标与置顶</li>
+                            <li data-i18n="sc1_l2">列表内直接勾选删除</li>
+                            <li data-i18n="sc1_l3">小精灵常驻右下角</li>
+                        </ul>
+                    </div>
+                    <figure class="shot">
+                        <div class="shot-frame"><img src="shots/desktop-list.png" alt="桌面端笔记列表" loading="lazy" data-shot-zh="shots/desktop-list.png" data-shot-en="shots/en/desktop-list.png" data-alt-zh="桌面端笔记列表" data-alt-en="Desktop note list"></div>
+                        <figcaption data-i18n="sc1_c">桌面端 · 笔记列表</figcaption>
+                    </figure>
+                </div>
+
+                <div class="shot-row reverse">
+                    <div class="shot-copy">
+                        <h3 data-i18n="sc2_t">详情即阅读，编辑要按一下</h3>
+                        <p data-i18n="sc2_d">打开笔记默认是干净的阅读态；点右上角的铅笔才进入编辑。标题、列表、表格、代码块、折叠块和图片，都在块工具栏里。</p>
+                        <ul>
+                            <li data-i18n="sc2_l1">标题与序号分级</li>
+                            <li data-i18n="sc2_l2">表格列宽可拖动</li>
+                            <li data-i18n="sc2_l3">选区加书签，回头能跳回来</li>
+                        </ul>
+                    </div>
+                    <figure class="shot">
+                        <div class="shot-frame"><img src="shots/desktop-detail.png" alt="桌面端笔记详情" loading="lazy" data-shot-zh="shots/desktop-detail.png" data-shot-en="shots/en/desktop-detail.png" data-alt-zh="桌面端笔记详情" data-alt-en="Desktop note detail"></div>
+                        <figcaption data-i18n="sc2_c">桌面端 · 块式笔记</figcaption>
+                    </figure>
+                </div>
+
+                <div class="shot-row">
+                    <div class="shot-copy">
+                        <h3 data-i18n="sc3_t">听歌的时候，桌上多一盆草</h3>
+                        <p data-i18n="sc3_d">音频以曲目行的形式待在你写下的位置。点一下就开始播放，跳舞草会跟着节奏摆动。</p>
+                        <ul>
+                            <li data-i18n="sc3_l1">mp3 / wav / flac</li>
+                            <li data-i18n="sc3_l3">小精灵也能听语音播放指令</li>
+                        </ul>
+                    </div>
+                    <figure class="shot">
+                        <div class="shot-frame"><img src="shots/desktop-music.png" alt="桌面端歌单与跳舞草" loading="lazy" data-shot-zh="shots/desktop-music.png" data-shot-en="shots/en/desktop-music.png" data-alt-zh="桌面端歌单与跳舞草" data-alt-en="Desktop playlist with the dancing plant"></div>
+                        <figcaption data-i18n="sc3_c">桌面端 · 歌单与跳舞草</figcaption>
+                    </figure>
+                </div>
+
+                <div class="shot-row reverse">
+                    <div class="shot-copy">
+                        <h3 data-i18n="sc4_t">今天要做什么，铺在桌上看</h3>
+                        <p data-i18n="sc4_d">计划任务带时间，按天汇总成彩色卡片：待执行、已完成、未完成一目了然。左侧有日期和时钟，前后翻一天就行。</p>
+                        <ul>
+                            <li data-i18n="sc4_l1">按天查看与前后切换</li>
+                            <li data-i18n="sc4_l2">任务状态直接点选</li>
+                            <li data-i18n="sc4_l3">小精灵到点提醒</li>
+                        </ul>
+                    </div>
+                    <figure class="shot">
+                        <div class="shot-frame"><img src="shots/plan-board.jpg" alt="计划看板" loading="lazy" data-shot-zh="shots/plan-board.jpg" data-shot-en="shots/en/plan-board.png" data-alt-zh="计划看板" data-alt-en="Plan board"></div>
+                        <figcaption data-i18n="sc4_c">桌面端 · 计划看板</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <section class="section alt">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow" data-i18n="phone_eyebrow">ON THE PHONE</div>
+                    <h2 data-i18n="phone_title">手机端：把本子揣进口袋</h2>
+                    <p data-i18n="phone_lead">手机端复刻了桌面端的笔记、计划、歌单与小精灵。支持离线语音指令和听写，也能和电脑通过局域网同步。</p>
+                </div>
+
+                <div class="shot-row" style="grid-template-columns: 1fr 0.62fr;">
+                    <div class="shot-copy">
+                        <h3 data-i18n="phone_feature_t">十款小精灵，挑一个陪你</h3>
+                        <p data-i18n="phone_feature_d">草莓卷、抹茶卷、芋泥卷、蓝莓卷……每一款都有自己的表情和配音。点一下会弹一下，来回蹭两下会开心地跳；长按还能用语音或文字给它下指令。</p>
+                        <ul>
+                            <li data-i18n="phone_feature_l1">语音输入 / 文字输入可切换</li>
+                            <li data-i18n="phone_feature_l2">语音播报与计划提醒开关</li>
+                            <li data-i18n="phone_feature_l3">设置里能查全部可用指令</li>
+                        </ul>
+                    </div>
+                    <figure class="shot">
+                        <div class="shot-frame"><img src="shots/mobile-mascot.jpg" alt="手机端小精灵设置" loading="lazy"></div>
+                        <figcaption data-i18n="phone_feature_c">鸿蒙端 · 小精灵换装与设置</figcaption>
+                    </figure>
+                </div>
+
+                <div class="section-head" style="margin: 54px auto 26px;">
+                    <h2 style="font-size:1.25rem" data-i18n="phone_more_title">手机端还有这些页面</h2>
+                </div>
+
+                <div class="phone-grid">
+                    <figure class="phone-figure">
+                        <div class="phone">
+                            <div class="screen">
+                                <img src="shots/mobile-list.png" alt="手机端笔记列表" loading="lazy"
+                                    onerror="this.closest('.phone-figure').classList.add('missing'); this.remove();">
+                                <div class="shot-todo">
+                                    <strong data-i18n="todo_title">截图待补</strong>
+                                    <span class="todo-file">shots/mobile-list.png</span>
+                                    <span class="todo-hint" data-i18n="todo_phone_list">华为端：笔记列表页（分类、搜索、右下角小精灵）</span>
+                                </div>
+                            </div>
+                        </div>
+                        <figcaption data-i18n="ph1_c">手机端 · 笔记列表</figcaption>
+                    </figure>
+
+                    <figure class="phone-figure">
+                        <div class="phone">
+                            <div class="screen">
+                                <img src="shots/mobile-note.png" alt="手机端笔记详情" loading="lazy"
+                                    onerror="this.closest('.phone-figure').classList.add('missing'); this.remove();">
+                                <div class="shot-todo">
+                                    <strong data-i18n="todo_title">截图待补</strong>
+                                    <span class="todo-file">shots/mobile-note.png</span>
+                                    <span class="todo-hint" data-i18n="todo_phone_note">华为端：笔记详情页（块式排版、书签或折叠块）</span>
+                                </div>
+                            </div>
+                        </div>
+                        <figcaption data-i18n="ph2_c">手机端 · 笔记详情</figcaption>
+                    </figure>
+
+                    <figure class="phone-figure">
+                        <div class="phone">
+                            <div class="screen">
+                                <img src="shots/mobile-music.png" alt="手机端歌单播放" loading="lazy"
+                                    onerror="this.closest('.phone-figure').classList.add('missing'); this.remove();">
+                                <div class="shot-todo">
+                                    <strong data-i18n="todo_title">截图待补</strong>
+                                    <span class="todo-file">shots/mobile-music.png</span>
+                                    <span class="todo-hint" data-i18n="todo_phone_music">华为端：歌单播放页（曲目列表 + 花房/跳舞草）</span>
+                                </div>
+                            </div>
+                        </div>
+                        <figcaption data-i18n="ph3_c">手机端 · 歌单播放</figcaption>
+                    </figure>
+
+                    <figure class="phone-figure">
+                        <div class="phone">
+                            <div class="screen">
+                                <img src="shots/mobile-plan.png" alt="手机端计划看板" loading="lazy"
+                                    onerror="this.closest('.phone-figure').classList.add('missing'); this.remove();">
+                                <div class="shot-todo">
+                                    <strong data-i18n="todo_title">截图待补</strong>
+                                    <span class="todo-file">shots/mobile-plan.png</span>
+                                    <span class="todo-hint" data-i18n="todo_phone_plan">华为端：计划看板（今天的任务卡片）</span>
+                                </div>
+                            </div>
+                        </div>
+                        <figcaption data-i18n="ph4_c">手机端 · 计划看板</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <section id="platforms" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow" data-i18n="platforms_eyebrow">PLATFORMS</div>
+                    <h2 data-i18n="platforms_title">在哪里可以用</h2>
+                    <p data-i18n="platforms_lead">第一版从 Windows 桌面端开始，移动端准备中；各端共用同一种数据格式。</p>
+                </div>
+                <div class="platform-grid">
+                    <article class="platform">
+                        <div class="platform-icon"><svg><use href="#i-windows"></use></svg></div>
+                        <div>
+                            <h3>Windows <span class="badge soon" data-i18n="win_badge">即将上架</span></h3>
+                            <p data-i18n="win_d">免费下载。笔记、计划、歌单、小精灵和局域网同步都能直接使用；额外换装是可选外观，不影响任何功能。</p>
+                        </div>
+                    </article>
+                    <article class="platform">
+                        <div class="platform-icon"><svg><use href="#i-phone"></use></svg></div>
+                        <div>
+                            <h3><span data-i18n="mobile_h3">移动端</span> <span class="badge soon" data-i18n="mobile_badge">敬请期待</span></h3>
+                            <p data-i18n="mobile_d">手机端支持笔记、计划、歌单、小精灵与局域网同步。离线语音识别与系统朗读由系统能力提供。</p>
+                        </div>
+                    </article>
+                </div>
+                <p class="hero-note" style="text-align:center; margin-top:22px" data-i18n="platform_footnote">换设备、换平台时，用 .rollcake 文件或局域网同步即可带走全部内容。</p>
+            </div>
+        </section>
+
+        <section id="usage" class="section alt">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow" data-i18n="usage_eyebrow">GETTING STARTED</div>
+                    <h2 data-i18n="usage_title">四步用起来</h2>
+                    <p data-i18n="usage_lead">不注册，不配置云端；打开就能写，需要时再逐步把设备连起来。</p>
+                </div>
+                <div class="steps">
+                    <article class="step">
+                        <h3 data-i18n="st1_t">打开就写</h3>
+                        <p data-i18n="st1_d">首次启动自带几篇说明和示例，读完可以随手删掉。新建笔记时选个模板，或者从空白开始。</p>
+                    </article>
+                    <article class="step">
+                        <h3 data-i18n="st2_t">连上另一台设备</h3>
+                        <p data-i18n="st2_d">在设置里开启局域网共享，另一台设备扫码或输入网址；选择要同步的笔记，音频也会一起过去。</p>
+                    </article>
+                    <article class="step">
+                        <h3 data-i18n="st3_t">把歌和计划放进去</h3>
+                        <p data-i18n="st3_d">插入音频就生成歌单；在笔记里插入带时间的计划任务，用看板按天跟进。</p>
+                    </article>
+                    <article class="step">
+                        <h3 data-i18n="st4_t">需要时再接 AI</h3>
+                        <p data-i18n="st4_d">在设置里开启 MCP，把带令牌的配置复制到支持 MCP 的客户端，让 AI 帮你整理记录。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <div class="eyebrow" data-i18n="faq_eyebrow">FAQ</div>
+                    <h2 data-i18n="faq_title">你可能想知道</h2>
+                </div>
+                <div class="faq">
+                    <details>
+                        <summary data-i18n="q1">需要注册账号吗？</summary>
+                        <p data-i18n="a1">不需要。蛋糕卷没有账号系统，也没有开发者云端；第一次打开就能直接写。</p>
+                    </details>
+                    <details>
+                        <summary data-i18n="q2">我的笔记会被上传吗？</summary>
+                        <p data-i18n="a2">不会。默认只在本地读写。只有你主动开启局域网共享、网页导入或 MCP，数据才会按你指定的范围流动；开发者没有接收这些数据的服务器。</p>
+                    </details>
+                    <details>
+                        <summary data-i18n="q3">换电脑怎么迁移？</summary>
+                        <p data-i18n="a3">在新设备导入导出的 .rollcake 文件，或者在同一个局域网里同步过去，内容会一起带过去。</p>
+                    </details>
+                    <details>
+                        <summary data-i18n="q6">语音识别会把录音传走吗？</summary>
+                        <p data-i18n="a6">鸿蒙端使用系统的离线语音识别能力，录音不需要离开设备；桌面端目前使用文字输入。小精灵的语音播报也走系统语音合成。</p>
+                    </details>
+                    <details>
+                        <summary data-i18n="q7">可以接哪些 AI 客户端？</summary>
+                        <p data-i18n="a7">任何支持 MCP 的客户端都可以，例如 Claude、Cursor、Qoder。配置只保存在你的设备上，服务默认关闭，开启后仍需逐个请求审批。</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <div class="cta-box">
+                    <h2 data-i18n="cta_title">先从电脑端开始</h2>
+                    <p data-i18n="cta_lead">免费、本地优先、不需要账号。等商店页面通过审核后，这里会直接给出下载按钮。</p>
+                    <a class="btn btn-primary" href="#features" data-i18n="cta_btn">再逛逛功能</a>
+                    <p class="hero-note" data-i18n="cta_note">如果你已经在旧版本试用，更新后数据会原样保留。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <span>&copy; 2026 CakeRoll. <span data-i18n="footer_rights">保留所有权利。</span></span>
+            <span>
+                <a href="privacy.html" data-i18n="footer_privacy">隐私政策</a>
+                &nbsp;·&nbsp;
+                <a href="../index.html" data-i18n="footer_home">回到 Coulana</a>
+                &nbsp;·&nbsp;
+                <a href="mailto:coulanasaluen@outlook.com">coulanasaluen@outlook.com</a>
+            </span>
+        </div>
+    </footer>
+
+    <script src="js/i18n.js"></script>
+</body>
+
+</html>
