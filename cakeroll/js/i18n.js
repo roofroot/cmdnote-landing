@@ -161,7 +161,10 @@ const translations = {
         footer_rights: "保留所有权利。",
         footer_home_back: "返回蛋糕卷首页",
         footer_privacy: "隐私政策",
-        footer_home: "回到 Coulana"
+        footer_home: "回到 Coulana",
+
+        mp_title: "小程序扫码",
+        mp_hint: "微信扫一扫，打开蛋糕卷轻笔记"
     },
     en: {
         tagline: "Local-first notes",
@@ -325,7 +328,10 @@ const translations = {
         footer_rights: "All rights reserved.",
         footer_home_back: "Back to CakeRoll",
         footer_privacy: "Privacy Policy",
-        footer_home: "Back to Coulana"
+        footer_home: "Back to Coulana",
+
+        mp_title: "Mini Program",
+        mp_hint: "Scan with WeChat to open the CakeRoll mini program"
     }
 };
 
